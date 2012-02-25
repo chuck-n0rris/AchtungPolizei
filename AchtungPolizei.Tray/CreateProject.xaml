@@ -1,0 +1,41 @@
+﻿<Window x:Class="AchtungPolizei.Tray.CreateProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Title="Create Project" Width="400" Height="400" >
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition MinWidth="200" Width="*" />                     
+        </Grid.ColumnDefinitions>
+               
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Project Name" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="CI Plugin" />
+        <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding InputPlugins}" />
+        
+        <ContentControl Grid.ColumnSpan="2" Grid.Row="4" Content="{Binding ConfigurationControl}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="6" Text="Notification Plugin" />
+        <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding OutputPlugins}" />
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0 10 0 0" Orientation="Horizontal" >
+            <Button Width="70" Height="25" Content="Create" />
+            <Button Width="70" Height="25" Margin="10 0 0 0" Content="Cancel" />
+        </StackPanel>
+
+    </Grid>
+</Window>
