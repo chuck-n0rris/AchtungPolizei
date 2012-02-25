@@ -32,13 +32,15 @@
 
         <TextBlock Grid.Column="0" Grid.Row="2" Text="CI Plugin" />
         <ComboBox Grid.Column="1" 
+                  x:Name="InputPluginsComboBox"
                   Grid.Row="2" DisplayMemberPath="Name" 
+                  SelectionChanged="InputPluginSelectionChanged"
                   SelectedItem="{Binding InputPlugin, Mode=TwoWay}"
                   SelectedValue="{Binding InputConfigurationControl, Mode=TwoWay}"
                   SelectedValuePath="Configiration"
                   ItemsSource="{Binding Path=InputPlugins, Mode=OneWay}" />
 
-        <ContentControl Grid.ColumnSpan="2" Grid.Row="4" Content="{Binding InputConfigurationControl}" />
+        <ContentControl Grid.ColumnSpan="2" Grid.Row="4" Content="{Binding InputPlugin.Configiration}" />
 
         <Grid Grid.ColumnSpan="2" Grid.Row="6"  >
             <Grid.RowDefinitions>
@@ -74,8 +76,8 @@
                     ItemsSource="{Binding Path=OutputPlugins, Mode=OneWay}" />
                 <Button Grid.Column="1" Content="Add" Click="AddOutputPluginClick" />
             </Grid>
-            
-            <ContentControl Grid.Row="6" Content="{Binding OutputConfigurationControl}" />
+
+            <ContentControl Grid.Row="6" Content="{Binding OutputPlugin.Configiration}" />
             
         </Grid>
 

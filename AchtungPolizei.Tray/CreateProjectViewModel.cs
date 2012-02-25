@@ -2,7 +2,6 @@ namespace AchtungPolizei.Tray
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Linq;
 
     using AchtungPolizei.Core;
     using AchtungPolizei.Plugins;
@@ -10,21 +9,19 @@ namespace AchtungPolizei.Tray
     public class CreateProjectViewModel : ViewModelBase
     {
         private string name;
-        private ObservableCollection<PluginViewModel> inputPlugins;
-        private ObservableCollection<PluginViewModel> outputPlugins;
+        private ObservableCollection<PluginPreviewItem> inputPlugins;
+        private ObservableCollection<PluginPreviewItem> outputPlugins;
         private IConfigirationControl inputConfigurationControl;
         private ObservableCollection<PluginViewModel> outputConfigurationControls;
         private IConfigirationControl outputConfigurationControl;
         private PluginViewModel inputPlugin;
+        private PluginViewModel outputPlugin;
 
-        private object configuration;
-
-        public CreateProjectViewModel(IEnumerable<IInputPlugin> inputPlugins,
-            IEnumerable<IOutputPlugin> outputPlugins)
+        public CreateProjectViewModel(IEnumerable<IInputPlugin> inputPlugins, IEnumerable<IOutputPlugin> outputPlugins)
         {
-            this.InputPlugins = new ObservableCollection<PluginViewModel>();
-            this.OutputPlugins = new ObservableCollection<PluginViewModel>();
-            
+            this.InputPlugins = new ObservableCollection<PluginPreviewItem>();
+            this.OutputPlugins = new ObservableCollection<PluginPreviewItem>();
+
             foreach (var inputPlugin in inputPlugins)
             {
                 this.InputPlugins.Add(new PluginViewModel(inputPlugin));
@@ -34,11 +31,11 @@ namespace AchtungPolizei.Tray
             {
                 this.OutputPlugins.Add(new PluginViewModel(outputPlugin));
             }
-            
+
             this.OutputConfigurationControls = new ObservableCollection<PluginViewModel>();
 
         }
-
+        
         public string Name
         {
             get
@@ -52,17 +49,32 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("Name");
             }
         }
-        
+
         public PluginViewModel InputPlugin
         {
             get
             {
                 return this.inputPlugin;
             }
+
             set
             {
                 this.inputPlugin = value;
                 this.RaisePropertyChanged("InputPlugin");
+            }
+        }
+
+        public PluginViewModel OutputPlugin
+        {
+            get
+            {
+                return this.outputPlugin;
+            }
+
+            set
+            {
+                this.outputPlugin = value;
+                this.RaisePropertyChanged("OutputPlugin");
             }
         }
 
@@ -93,7 +105,7 @@ namespace AchtungPolizei.Tray
             }
         }
 
-        public ObservableCollection<PluginViewModel> InputPlugins
+        public ObservableCollection<PluginPreviewItem> InputPlugins
         {
             get
             {
@@ -106,8 +118,8 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("InputPlugins");
             }
         }
-        
-        public ObservableCollection<PluginViewModel> OutputPlugins
+
+        public ObservableCollection<PluginPreviewItem> OutputPlugins
         {
             get
             {
@@ -120,7 +132,7 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("OutputPlugins");
             }
         }
-        
+
         public IConfigirationControl OutputConfigurationControl
         {
             get

@@ -1,7 +1,7 @@
 ﻿namespace AchtungPolizei.Tray
 {
-    using System.Linq;
     using System.Windows;
+    using System.Windows.Controls;
 
     using AchtungPolizei.Core;
     using AchtungPolizei.Core.Helpers;
@@ -47,6 +47,13 @@
         private void CreateButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+        }
+
+        private void InputPluginSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var pluginModel = (PluginViewModel)InputPluginsComboBox.SelectedItem;
+
+            model.InputConfigurationControl.GetConfiguration();
         }
     }
 }

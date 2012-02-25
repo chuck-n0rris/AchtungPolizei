@@ -1,33 +1,59 @@
 namespace AchtungPolizei.Tray
 {
     using System;
-
     using AchtungPolizei.Plugins;
 
-    public class PluginViewModel : ViewModelBase
+    public class PluginPreviewItem : ViewModelBase
     {
-        private Guid id;
-        private string name;
-        private IConfigirationControl configiration;
+        private readonly IPlugin inputPlugins;
 
-        public PluginViewModel(IPlugin plugin)
+        public PluginPreviewItem(IPlugin plugin)
         {
-            this.Id = plugin.Id;
-            this.Configiration = plugin.GetConfigControl();
-            this.Name = plugin.Name;
+            this.inputPlugins = plugin;
+        }
+
+        public Guid Id
+        {
+            get
+            {
+                return this.inputPlugins.Id;
+            }
         }
 
         public string Name
         {
             get
             {
-                return this.name;
+                return this.inputPlugins.Name;
             }
+        }
 
-            set
+        public IPlugin Source { get; set; }
+    }
+
+    public class PluginViewModel : ViewModelBase
+    {
+        private readonly IPlugin plugin;
+        private IConfigirationControl configuration;
+
+        public PluginViewModel(IPlugin plugin)
+        {
+            this.plugin = plugin;
+        }
+
+        public Guid Id
+        {
+            get
             {
-                this.name = value;
-                this.RaisePropertyChanged("Name");
+                return this.plugin.Id;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return this.plugin.Name;
             }
         }
         
@@ -35,27 +61,7 @@ namespace AchtungPolizei.Tray
         {
             get
             {
-                return this.configiration;
-            }
-
-            set
-            {
-                this.configiration = value;
-                this.RaisePropertyChanged("Configiration");
-            }
-        }
-
-        public Guid Id
-        {
-            get
-            {
-                return this.id;
-            }
-
-            set
-            {
-                this.id = value;
-                this.RaisePropertyChanged("Id");
+                return this.configuration;
             }
         }
     }
