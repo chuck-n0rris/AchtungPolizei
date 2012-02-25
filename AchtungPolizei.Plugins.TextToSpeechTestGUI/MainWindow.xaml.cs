@@ -10,6 +10,7 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
     public partial class MainWindow : Window
     {
         private IConfigirationControl settingsControl;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -18,7 +19,6 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
             settingsControl = plugin.GetConfigControl();
 
             ContentControl.Content = settingsControl;
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

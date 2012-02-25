@@ -13,7 +13,7 @@ namespace AchtungPolizei.Plugins.Impl
     {
         private readonly CookieAwareWebClient client = new CookieAwareWebClient();
         private readonly XmlDocument document = new XmlDocument();
-        private HudsonPollerConfiguration configuration;
+        private HudsonPollerConfiguration configuration = new HudsonPollerConfiguration();
         private bool isAuthenticated;
         private Timer timer;
 
@@ -71,7 +71,16 @@ namespace AchtungPolizei.Plugins.Impl
         /// </returns>
         public IConfigirationControl GetConfigControl()
         {
-            return new HudsonPollerConfigurationControl();
+            var control = new HudsonPollerConfigurationControl();
+            control.DataContext = new HudsonPollerConfigurationControl.ViewModel
+                                      {
+                                          Address = configuration.Address,
+                                          Username = configuration.Username,
+                                          Password = configuration.Password,
+                                          PollInterval = configuration.PollInterval,
+                                          Project = configuration.Project
+                                      };
+            return control;
         }
 
         /// <summary>
