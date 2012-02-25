@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{23898A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Plugins.TextToSpeechTestGUI", "AchtungPolizei.Plugins.TextToSpeechTestGUI\AchtungPolizei.Plugins.TextToSpeechTestGUI.csproj", "{C713C52A-FC0F-4317-B137-1A50D0C5FB2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Core.IntegrationTests", "AchtungPolizei.Core.IntegrationTests\AchtungPolizei.Core.IntegrationTests.csproj", "{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,17 @@ Global
 		{C713C52A-FC0F-4317-B137-1A50D0C5FB2E}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C713C52A-FC0F-4317-B137-1A50D0C5FB2E}.Release|x86.ActiveCfg = Release|x86
 		{C713C52A-FC0F-4317-B137-1A50D0C5FB2E}.Release|x86.Build.0 = Release|x86
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +159,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DBE39910-FD55-4E95-ACE5-E7012B178FCC} = {B68DEC55-B7AE-4DDC-998A-31F87848D199}
 		{5069486F-9537-4676-B5CC-4A9F1CFE2A30} = {B68DEC55-B7AE-4DDC-998A-31F87848D199}
+		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9} = {B68DEC55-B7AE-4DDC-998A-31F87848D199}
 		{E32F0A3F-4EC3-4093-9AE3-DBE2AF6C6F8C} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
 		{B13041AF-6522-4972-9760-1285A3EB1591} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
 		{7B966C23-B375-4E61-9961-B0CE907C3FEE} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
