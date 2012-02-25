@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Linq;
 
 namespace AchtungPolizei.Plugins.Impl
 {
@@ -57,6 +58,16 @@ namespace AchtungPolizei.Plugins.Impl
         }
 
         /// <summary>
+        /// Validates this instance.
+        /// </summary>
+        /// <returns></returns>
+        public bool Validate()
+        {
+            ForceValidation();
+            return Error == null;
+        }
+
+        /// <summary>
         /// Changes the property.
         /// </summary>
         /// <typeparam name="TProperty">The type of the property.</typeparam>
@@ -93,6 +104,18 @@ namespace AchtungPolizei.Plugins.Impl
             {
                 throw new ApplicationException("Can't set property value.", exception);
             }
+        }
+
+        /// <summary>
+        /// Forces the validation.
+        /// </summary>
+        private void ForceValidation()
+        {
+            GetType()
+                .GetMethods()
+                .Where(x => x.Name.EndsWith("Validator"))
+                .ToList()
+                .ForEach(x => x.Invoke(this, new object[0]));
         }
     }
 }
