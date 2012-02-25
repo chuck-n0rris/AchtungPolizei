@@ -66,6 +66,11 @@ namespace AchtungPolizei.Plugins.Impl
         {
             try
             {
+                if (PropertyChanged == null)
+                {
+                    return;
+                }
+
                 var expression = setter.Body as MemberExpression;
                 var name = expression.Member.Name;
 
