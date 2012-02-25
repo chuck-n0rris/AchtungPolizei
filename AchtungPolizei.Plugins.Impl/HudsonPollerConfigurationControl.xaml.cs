@@ -13,14 +13,6 @@ namespace AchtungPolizei.Plugins.Impl
         public HudsonPollerConfigurationControl()
         {
             InitializeComponent();
-            DataContext = new ViewModel
-                              {
-                                  Address = "http://hudson.example.com/", 
-                                  Username = "username", 
-                                  Password = "password", 
-                                  PollInterval = 10000, 
-                                  Project = "projectname"
-                              };
         }
 
         #region IConfigirationControl Members
@@ -70,7 +62,7 @@ namespace AchtungPolizei.Plugins.Impl
         /// <summary>
         /// View model for current control.
         /// </summary>
-        private class ViewModel : ViewModelBase<ViewModel>
+        public class ViewModel : ViewModelBase<ViewModel>
         {
             private string address;
             private string username;

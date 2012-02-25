@@ -10,15 +10,15 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
     public partial class MainWindow : Window
     {
         private IConfigirationControl settingsControl;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            var plugin = new HudsonPoller();
+            var plugin = new LightOutputPlugin();
             settingsControl = plugin.GetConfigControl();
 
             ContentControl.Content = settingsControl;
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

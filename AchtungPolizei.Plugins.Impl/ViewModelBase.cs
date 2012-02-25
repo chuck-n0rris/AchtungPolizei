@@ -79,10 +79,7 @@ namespace AchtungPolizei.Plugins.Impl
         {
             try
             {
-                if (PropertyChanged == null)
-                {
-                    return;
-                }
+                
 
                 var expression = setter.Body as MemberExpression;
                 var name = expression.Member.Name;
@@ -100,7 +97,11 @@ namespace AchtungPolizei.Plugins.Impl
                 }
 
                 field.SetValue(this, value);
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
+
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(name));
+                }
             }
             catch (Exception exception)
             {

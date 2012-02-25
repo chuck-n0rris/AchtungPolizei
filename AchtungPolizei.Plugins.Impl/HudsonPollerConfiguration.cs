@@ -5,6 +5,12 @@ namespace AchtungPolizei.Plugins.Impl
     /// </summary>
     public class HudsonPollerConfiguration : ConfigurationBase
     {
+        private const string addressKey = "address";
+        private const string usernameKey = "username";
+        private const string passwordKey = "password";
+        private const string projectKey = "project";
+        private const string intervalKey = "interval";
+
         /// <summary>
         /// Gets or sets the address, e.g. http://hudson.example.com/ 
         /// (please, note the trailing slash).
@@ -14,8 +20,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// </value>
         public string Address
         {
-            get { return Parameters["address"]; }
-            set { Parameters["address"] = value; }
+            get { return GetParameter(addressKey, "http://hudson.example.com/"); }
+            set { Parameters[addressKey] = value; }
         }
 
         /// <summary>
@@ -26,8 +32,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// </value>
         public string Username
         {
-            get { return Parameters["username"]; }
-            set { Parameters["username"] = value; }
+            get { return GetParameter(usernameKey, "username"); }
+            set { Parameters[usernameKey] = value; }
         }
 
         /// <summary>
@@ -38,8 +44,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// </value>
         public string Password
         {
-            get { return Parameters["password"]; }
-            set { Parameters["password"] = value; }
+            get { return GetParameter(passwordKey, "password"); }
+            set { Parameters[passwordKey] = value; }
         }
 
         /// <summary>
@@ -50,8 +56,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// </value>
         public string Project
         {
-            get { return Parameters["project"]; }
-            set { Parameters["project"] = value; }
+            get { return GetParameter(projectKey, "project"); }
+            set { Parameters[projectKey] = value; }
         }
 
         /// <summary>
@@ -62,8 +68,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// </value>
         public int PollInterval
         {
-            get { return int.Parse(Parameters["interval"]); } 
-            set { Parameters["interval"] = value.ToString(); }
+            get { return GetParameter(intervalKey, 10000); } 
+            set { Parameters[intervalKey] = value.ToString(); }
         }
     }
 }
