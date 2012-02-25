@@ -1,4 +1,6 @@
-﻿namespace AchtungPolizei.Plugins.TextToSpeech
+﻿using System;
+
+namespace AchtungPolizei.Plugins.TextToSpeech
 {
     using System.Windows.Controls;
 
@@ -32,6 +34,11 @@
                     BuildFixedPhrase = viewModel.BuildFixedPhrase,
                     BuildStillBrokenPhrase = viewModel.BuildStillBrokenPhrase
                 };
+        }
+
+        public Type GetConfigurationType()
+        {
+            return typeof(TextToSpeechConfiguration);
         }
     }
 }
