@@ -69,7 +69,6 @@
     </Compile>
     <Compile Include="TrackableWaveChannel.cs" />
     <Compile Include="ViewModelBase.cs" />
-    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">

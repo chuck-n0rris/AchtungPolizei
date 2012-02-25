@@ -60,12 +60,7 @@
         {
             this.configuration = configuration as TextToSpeechConfiguration;
         }
-
-        public void SetConfiguration(ConfigurationBase configuration)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public IConfigirationControl GetConfigControl()
         {
             return control;

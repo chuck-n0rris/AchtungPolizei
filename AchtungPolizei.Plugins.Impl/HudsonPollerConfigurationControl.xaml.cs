@@ -54,6 +54,15 @@ namespace AchtungPolizei.Plugins.Impl
                        };
         }
 
+        /// <summary>
+        /// Gets the type of the configuration.
+        /// </summary>
+        /// <returns>Configuration type.</returns>
+        public Type GetConfigurationType()
+        {
+            return typeof (HudsonPollerConfiguration);
+        }
+
         #endregion
 
         #region Nested type: ViewModel
