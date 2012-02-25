@@ -10,8 +10,11 @@ namespace AchtungPolizei.Tray
         private string name;
         private IConfigirationControl configiration;
 
-        public PluginViewModel()
+        public PluginViewModel(IPlugin plugin)
         {
+            this.Id = plugin.Id;
+            this.Configiration = plugin.GetConfigControl();
+            this.Name = plugin.Name;
         }
 
         public string Name
