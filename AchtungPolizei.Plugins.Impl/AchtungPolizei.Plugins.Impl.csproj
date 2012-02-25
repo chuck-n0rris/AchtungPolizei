@@ -45,6 +45,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HudsonPollerConfigurationControl.xaml.cs">
+      <DependentUpon>HudsonPollerConfigurationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HudsonPoller.cs" />
     <Compile Include="CookieAwareWebClient.cs">
       <SubType>Component</SubType>
@@ -79,6 +82,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SoundSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="HudsonPollerConfigurationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

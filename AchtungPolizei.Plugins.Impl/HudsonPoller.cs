@@ -71,7 +71,7 @@ namespace AchtungPolizei.Plugins.Impl
         /// </returns>
         public IConfigirationControl GetConfigControl()
         {
-            throw new NotImplementedException();
+            return new HudsonPollerConfigurationControl();
         }
 
         /// <summary>
