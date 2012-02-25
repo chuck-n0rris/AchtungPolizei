@@ -44,6 +44,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildState.cs" />
     <Compile Include="BuildStatus.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="IInputPlugin.cs" />

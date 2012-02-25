@@ -4,6 +4,6 @@ namespace AchtungPolizei.Plugins
 
     public interface IOutputPlugin : IPlugin
     {
-        Task Start(BuildStatus status);
+        Task Start(BuildState state, BuildStatus status);
     }
 }
