@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IPlugin
+    public interface IPlugin : IDisposable
     {
         Guid Id { get; }
 
