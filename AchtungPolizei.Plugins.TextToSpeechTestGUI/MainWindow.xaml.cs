@@ -15,7 +15,7 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
         {
             InitializeComponent();
 
-            var plugin = new HudsonPoller();
+            var plugin = new LightOutputPlugin();
             settingsControl = plugin.GetConfigControl();
 
             ContentControl.Content = settingsControl;

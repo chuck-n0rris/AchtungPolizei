@@ -68,6 +68,9 @@ namespace AchtungPolizei.Plugins.Impl
         public IConfigirationControl GetConfigControl()
         {
             var model = new LightSettingsModel();
+
+            model.Device = "blablalba";
+            
             var view = new LightSettingsView
                            {
                                DataContext = model

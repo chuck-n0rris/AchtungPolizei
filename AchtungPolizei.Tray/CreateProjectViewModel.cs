@@ -1,9 +1,8 @@
 namespace AchtungPolizei.Tray
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Windows.Controls;
+    using System.Linq;
 
     using AchtungPolizei.Core;
     using AchtungPolizei.Plugins;
@@ -20,10 +19,22 @@ namespace AchtungPolizei.Tray
 
         private object configuration;
 
-        public CreateProjectViewModel(IEnumerable<IPlugin> plugins)
+        public CreateProjectViewModel(IEnumerable<IInputPlugin> inputPlugins,
+            IEnumerable<IOutputPlugin> outputPlugins)
         {
             this.InputPlugins = new ObservableCollection<PluginViewModel>();
             this.OutputPlugins = new ObservableCollection<PluginViewModel>();
+            
+            foreach (var inputPlugin in inputPlugins)
+            {
+                this.InputPlugins.Add(new PluginViewModel(inputPlugin));
+            }
+
+            foreach (var outputPlugin in outputPlugins)
+            {
+                this.OutputPlugins.Add(new PluginViewModel(outputPlugin));
+            }
+            
             this.OutputConfigurationControls = new ObservableCollection<PluginViewModel>();
 
         }
