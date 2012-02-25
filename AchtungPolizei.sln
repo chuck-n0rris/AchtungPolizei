@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Core", "Acht
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Plugins", "AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj", "{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B458C11-FAC5-45E1-B3C8-4983BC997DE4}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Plugins.Impl", "AchtungPolizei.Plugins.Impl\AchtungPolizei.Plugins.Impl.csproj", "{7B966C23-B375-4E61-9961-B0CE907C3FEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +54,16 @@ Global
 		{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7B966C23-B375-4E61-9961-B0CE907C3FEE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

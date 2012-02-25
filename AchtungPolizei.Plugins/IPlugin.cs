@@ -18,9 +18,10 @@ namespace AchtungPolizei.Plugins
         string Name { get; }
 
         /// <summary>
-        /// Plugin configuration.
+        /// Sets plugin configuration.
         /// </summary>
-        ConfigurationBase Configuration { get; set; }
+        /// <param name="configuration">The configuration.</param>
+        void SetConfiguration(ConfigurationBase configuration);
 
         /// <summary>
         /// Returns UI control for editing of configuration.

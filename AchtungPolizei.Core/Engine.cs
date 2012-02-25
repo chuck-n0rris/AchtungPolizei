@@ -6,14 +6,14 @@
     {
         private List<Project> projects = new List<Project>();
 
-        public void Start(List<Project> projects)
-        {
-            this.projects = projects;
-        }
-
         public IEnumerable<Project> Projects
         {
             get { return projects; }
+        }
+
+        public void Start(List<Project> projects)
+        {
+            this.projects = projects;
         }
     }
 }
