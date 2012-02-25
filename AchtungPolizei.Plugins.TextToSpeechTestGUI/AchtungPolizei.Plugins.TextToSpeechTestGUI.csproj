@@ -95,6 +95,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Plugins.Impl\AchtungPolizei.Plugins.Impl.csproj">
+      <Project>{7B966C23-B375-4E61-9961-B0CE907C3FEE}</Project>
+      <Name>AchtungPolizei.Plugins.Impl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AchtungPolizei.Plugins.TextToSpeech\AchtungPolizei.Plugins.TextToSpeech.csproj">
       <Project>{E32F0A3F-4EC3-4093-9AE3-DBE2AF6C6F8C}</Project>
       <Name>AchtungPolizei.Plugins.TextToSpeech</Name>

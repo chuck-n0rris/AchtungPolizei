@@ -12,9 +12,9 @@ namespace AchtungPolizei.Plugins.Impl
 
         public string FileName { get; private set; }
 
-        public SoundOutputPlugin(string fileName)
+        public SoundOutputPlugin()
         {
-            FileName = fileName;
+            FileName = string.Empty;
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using AchtungPolizei.Plugins.Impl;
 using AchtungPolizei.Plugins.TextToSpeech;
 
 namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
@@ -13,11 +14,11 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
         {
             InitializeComponent();
 
-            var plugin = new TextToSpeechPlugin();
+            var plugin = new LightOutputPlugin();
+
             settingsControl = plugin.GetConfigControl();
 
             ContentControl.Content = settingsControl;
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
