@@ -63,9 +63,12 @@
     <Compile Include="CreateProject.xaml.cs">
       <DependentUpon>CreateProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateProjectViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PluginViewModel.cs" />
+    <Compile Include="ProjectViewModel.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="ViewModelBase.cs" />
     <Page Include="CreateProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +130,16 @@
     <Resource Include="Images\green_light_32.png" />
     <Resource Include="Images\red_light_32.png" />
     <Resource Include="Images\yellow_light_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Core\AchtungPolizei.Core.csproj">
+      <Project>{DBE39910-FD55-4E95-ACE5-E7012B178FCC}</Project>
+      <Name>AchtungPolizei.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
+      <Project>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</Project>
+      <Name>AchtungPolizei.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
