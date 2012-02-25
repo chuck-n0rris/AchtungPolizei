@@ -22,7 +22,11 @@
 
         private const string name = "Text to Speech";
 
+        private IConfigirationControl control = new SettingsControl();
+
         private bool disposed;
+
+        private TextToSpeechConfiguration configuration;
 
         public TextToSpeechPlugin()
         {
@@ -52,7 +56,10 @@
             get { return name; }
         }
 
-        public ConfigurationBase Configuration { get; set; }
+        public void SetConfiguration(ConfigurationBase configuration)
+        {
+            this.configuration = configuration as TextToSpeechConfiguration;
+        }
 
         public void SetConfiguration(ConfigurationBase configuration)
         {
@@ -61,10 +68,8 @@
 
         public IConfigirationControl GetConfigControl()
         {
-            throw new NotImplementedException();
+            return control;
         }
-
-        public event EventHandler<StatusReceivedEventArgs> StatusReceived;
 
         public Task Start(BuildState state, BuildStatus status)
         {
@@ -80,8 +85,6 @@
 
         private string GetPhrase(BuildStatus status)
         {
-            var configuration = Configuration as TextToSpeechConfiguration;
-
             string phrase = null;
 
             if (configuration != null)
