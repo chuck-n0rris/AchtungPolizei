@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Xml;
 
@@ -11,12 +12,22 @@ namespace AchtungPolizei.Plugins.Impl
     public class HudsonPoller : IInputPlugin
     {
         private readonly CookieAwareWebClient client = new CookieAwareWebClient();
+        private readonly XmlDocument document = new XmlDocument();
+        private HudsonPollerConfiguration configuration;
+        private bool isAuthenticated;
         private Timer timer;
 
-        private bool isAuthenticated;
-        private XmlDocument document;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HudsonPoller"/> class.
+        /// </summary>
+        public HudsonPoller()
+        {
+            // authentication request completed
+            client.UploadStringCompleted += AuthenticationCompleted;
 
-        private HudsonPollerConfiguration configuration;
+            // poll request completed
+            client.DownloadStringCompleted += PollCompleted;
+        }
 
         /// <summary>
         /// Occurs when build status is received from CI.
@@ -44,7 +55,11 @@ namespace AchtungPolizei.Plugins.Impl
         /// </summary>
         public void Dispose()
         {
-            timer.Dispose();
+            if (timer != null)
+            {
+                timer.Dispose();
+            }
+
             client.Dispose();
         }
 
@@ -62,10 +77,15 @@ namespace AchtungPolizei.Plugins.Impl
         /// <summary>
         /// Sets plugin configuration.
         /// </summary>
-        /// <param name="configuration">The configuration.</param>
-        public void SetConfiguration(ConfigurationBase configuration)
+        /// <param name="instance">The configuration.</param>
+        public void SetConfiguration(ConfigurationBase instance)
         {
-            this.configuration = configuration as HudsonPollerConfiguration;
+            configuration = instance as HudsonPollerConfiguration;
+            if (configuration == null)
+            {
+                throw new ApplicationException("Configuration can not be null.");
+            }
+
             RestartTimer();
         }
 
@@ -79,10 +99,6 @@ namespace AchtungPolizei.Plugins.Impl
             timer = new Timer(Poll, null, 0, configuration.PollInterval);
         }
 
-        /// <summary>
-        /// Polls Hudson for status of latest project build.
-        /// </summary>
-        /// <param name="state">The state. Ignored.</param>
         private void Poll(object state)
         {
             if (StatusReceived == null)
@@ -93,19 +109,70 @@ namespace AchtungPolizei.Plugins.Impl
             if (!isAuthenticated)
             {
                 Authenticate();
-                isAuthenticated = true;
+            }
+            else
+            {
+                ReadStatus();                
+            }
+        }
+
+        private void Authenticate()
+        {
+            client.Headers["Content-type"] = "application/x-www-form-urlencoded";
+            client.UploadString(
+                configuration.Address + "j_acegi_security_check",
+                string.Format(
+                    "j_username={0}&j_password={1}",
+                    configuration.Username,
+                    configuration.Password));
+        }
+
+        private void ReadStatus()
+        {
+            var address = string.Format(
+                "{0}job/{1}/lastBuild/api/xml",
+                configuration.Address,
+                configuration.Project);
+            client.DownloadStringAsync(new Uri(address));
+        }
+
+        private void AuthenticationCompleted(object sender, UploadStringCompletedEventArgs args)
+        {
+            if (args.Error != null)
+            {
+                throw args.Error;
             }
 
-            ReadStatus();
-            StatusReceived(this, new StatusReceivedEventArgs(
-                                     new BuildState
-                                         {
-                                             Authors = GetAuthors(),
-                                             IsSuccessful = GetIsSuccessful(),
-                                             Number = GetNumber(),
-                                             Project = configuration.Project,
-                                             Time = GetTime()
-                                         }));
+            isAuthenticated = true;
+
+            Poll(null);
+        }
+
+        private void PollCompleted(object sender, DownloadStringCompletedEventArgs args)
+        {
+            if (StatusReceived == null)
+            {
+                return;
+            }
+
+            if (args.Error != null)
+            {
+                throw args.Error;
+            }
+
+            document.LoadXml(args.Result);
+
+            StatusReceived(
+                this,
+                new StatusReceivedEventArgs(
+                    new BuildState
+                        {
+                            Authors = GetAuthors(),
+                            IsSuccessful = GetIsSuccessful(),
+                            Number = GetNumber(),
+                            Project = configuration.Project,
+                            Time = GetTime()
+                        }));
         }
 
         private DateTime GetTime()
@@ -139,24 +206,6 @@ namespace AchtungPolizei.Plugins.Impl
                 .Cast<XmlNode>()
                 .Select(x => x.InnerText)
                 .ToArray();
-        }
-
-        private void ReadStatus()
-        {
-            document = new XmlDocument();
-            document.LoadXml(client.DownloadString(string.Format(string.Format(
-                "{0}job/{1}/lastBuild/api/xml", configuration.Address, configuration.Project))));
-        }
-
-        private void Authenticate()
-        {
-            client.Headers["Content-type"] = "application/x-www-form-urlencoded";
-            client.UploadString(
-                configuration.Address + "j_acegi_security_check",
-                string.Format(
-                    "j_username={0}&j_password={1}",
-                    configuration.Username,
-                    configuration.Password));
         }
     }
 }
