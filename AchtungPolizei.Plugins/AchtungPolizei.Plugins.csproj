@@ -47,7 +47,7 @@
     <Compile Include="BuildState.cs" />
     <Compile Include="BuildStatus.cs" />
     <Compile Include="IConfigirationControl.cs" />
-    <Compile Include="IConfiguration.cs" />
+    <Compile Include="ConfigurationBase.cs" />
     <Compile Include="IInputPlugin.cs" />
     <Compile Include="IOutputPlugin.cs" />
     <Compile Include="IPlugin.cs" />

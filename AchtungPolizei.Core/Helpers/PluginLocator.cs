@@ -8,7 +8,7 @@ namespace AchtungPolizei.Core.Helpers
     {
         public IEnumerable<IPlugin> FindPlugins()
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

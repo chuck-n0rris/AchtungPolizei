@@ -20,5 +20,10 @@
             var createDialog = new CreateProject();
             createDialog.ShowDialog();
         }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
