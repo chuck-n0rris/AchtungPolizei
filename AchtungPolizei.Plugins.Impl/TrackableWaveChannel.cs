@@ -1,4 +1,5 @@
 using System;
+using NAudio.Wave;
 
 namespace AchtungPolizei.Plugins.Impl
 {

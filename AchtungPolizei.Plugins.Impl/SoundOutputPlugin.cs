@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
+using NAudio.CoreAudioApi;
+using NAudio.Wave;
 
 namespace AchtungPolizei.Plugins.Impl
 {
     public class SoundOutputPlugin : IOutputPlugin
     {
         private readonly Guid guid = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09");
+        private SoundPluginConfiguration configuration;
 
         public string FileName { get; private set; }
 
@@ -31,12 +34,15 @@ namespace AchtungPolizei.Plugins.Impl
 
         public void SetConfiguration(ConfigurationBase configuration)
         {
-            throw new NotImplementedException();
+            this.configuration = (SoundPluginConfiguration) configuration;
         }
 
         public IConfigirationControl GetConfigControl()
         {
-            throw new NotImplementedException();
+            return new SoundSettingsView
+                       {
+                           DataContext = new SoundSettingsModel()
+                       };
         }
 
         public Task Start(BuildState state, BuildStatus status)

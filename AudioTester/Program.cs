@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AchtungPolizei.Plugins;
+using AchtungPolizei.Plugins.Impl;
 
 namespace AudioTester
 {

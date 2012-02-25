@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AchtungPolizei.Plugins
+namespace AchtungPolizei.Plugins.Impl
 {
     public class LightOutputPlugin : IOutputPlugin
     {
@@ -22,10 +22,6 @@ namespace AchtungPolizei.Plugins
             this.Miliseconds = 10000;
         }
 
-        public LightOutputPlugin(ConfigurationBase configuration)
-        {
-        }
-
         private void StartPlay()
         {
             //Process.Start(new ProcessStartInfo())
@@ -35,8 +31,6 @@ namespace AchtungPolizei.Plugins
         private string BuildArguments(string switchState)
         {
             const string cmdArgumentsPattern = @"-{0} -{1} -{2}";
-
-
             string arguments = String.Format(cmdArgumentsPattern, switchState, this.DeviceName, this.SocketName);
             return arguments;
         }
@@ -68,12 +62,17 @@ namespace AchtungPolizei.Plugins
 
         public void SetConfiguration(ConfigurationBase configuration)
         {
-            throw new NotImplementedException();
+            
         }
 
         public IConfigirationControl GetConfigControl()
         {
-            throw new NotImplementedException();
+            var model = new LightSettingsModel();
+            var view = new LightSettingsView
+                           {
+                               DataContext = model
+                           };
+            return view;
         }
 
         public Task Start(BuildState state, BuildStatus status)
