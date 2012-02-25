@@ -40,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine.cs" />
+    <Compile Include="Helpers\PluginLocator.cs" />
+    <Compile Include="Helpers\ProjectsSerializer.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
+      <Project>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</Project>
+      <Name>AchtungPolizei.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
