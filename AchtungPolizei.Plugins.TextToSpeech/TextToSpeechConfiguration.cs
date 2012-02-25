@@ -1,7 +1,14 @@
-﻿namespace AchtungPolizei.Plugins.TextToSpeech
+﻿using System.Collections.Generic;
+
+namespace AchtungPolizei.Plugins.TextToSpeech
 {
     public class TextToSpeechConfiguration : ConfigurationBase
     {
+        public TextToSpeechConfiguration()
+        {
+            Parameters = new Dictionary<string, string>();
+        }
+
         private const string BuildBrokenPhraseParam = "BuildBrokenPhrase";
 
         private const string BuildStillBrokenPhraseParam = "BuildStillBrokenPhrase";

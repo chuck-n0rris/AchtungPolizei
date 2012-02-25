@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="AchtungPolizei.Plugins.TextToSpeech.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Padding="8" d:DesignHeight="200" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition MinWidth="100" Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=BuildBrokenPhrase}">Build broken phrase:</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Name="BuildBrokenPhrase" Text="{Binding BuildBrokenPhrase}" MinWidth="100"></TextBox>
+
+        <Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=BuildStillBrokenPhrase}">Build still broken phrase:</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Name="BuildStillBrokenPhrase" Text="{Binding BuildStillBrokenPhrase}"></TextBox>
+        
+        <Label Grid.Column="0" Grid.Row="4" Target="{Binding ElementName=BuildFixedPhrase}">Build fixed phrase:</Label>
+        <TextBox Grid.Column="1" Grid.Row="4" Name="BuildFixedPhrase" Text="{Binding BuildFixedPhrase}"></TextBox>
+    </Grid>
+</UserControl>
