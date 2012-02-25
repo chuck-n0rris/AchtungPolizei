@@ -16,9 +16,9 @@ namespace AchtungPolizei.Plugins
         
         public LightOutputPlugin()
         {
-            this.DeviceName = "Device2";
-            this.SocketName = "Socket1";
-            this.ExecutablePath = @"C:\Program Files\Gembird\Power Manager\pm.exe";
+            this.DeviceName = "DEVICE2";
+            this.SocketName = "SOCKET1";
+            this.ExecutablePath = @"""C:\Program Files\Gembird\Power Manager\pm.exe""";
             this.Miliseconds = 10000;
         }
 
@@ -28,14 +28,16 @@ namespace AchtungPolizei.Plugins
 
         private void StartPlay()
         {
-            Process.Start(ExecutablePath, BuildArguments("on"));
+            //Process.Start(new ProcessStartInfo())
+            Process.Start(ExecutablePath, BuildArguments("ON"));
         }
 
         private string BuildArguments(string switchState)
         {
             const string cmdArgumentsPattern = @"-{0} -{1} -{2}";
 
-            string arguments = String.Format(cmdArgumentsPattern, switchState, this.SocketName, this.DeviceName);
+
+            string arguments = String.Format(cmdArgumentsPattern, switchState, this.DeviceName, this.SocketName);
             return arguments;
         }
 
@@ -51,7 +53,7 @@ namespace AchtungPolizei.Plugins
 
         private void StopPlay()
         {
-            Process.Start(ExecutablePath, BuildArguments("off"));
+            Process.Start(ExecutablePath, BuildArguments("Off"));
         }
 
         public Guid Id
