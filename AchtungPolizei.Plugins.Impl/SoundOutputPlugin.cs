@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
@@ -10,11 +11,9 @@ namespace AchtungPolizei.Plugins.Impl
         private readonly Guid guid = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09");
         private SoundPluginConfiguration configuration;
 
-        public string FileName { get; private set; }
-
         public SoundOutputPlugin()
         {
-            FileName = string.Empty;
+            
         }
 
         public void Dispose()
@@ -51,8 +50,30 @@ namespace AchtungPolizei.Plugins.Impl
 
             try
             {
+                var fileName = "";
+                
+                switch (status)
+                {
+                    case BuildStatus.Broken:
+                        fileName = configuration.Broken;
+                        break;
+                    case BuildStatus.StillBroken:
+                        fileName = configuration.StillBroken;
+                        break;
+                    case BuildStatus.Fixed:
+                        fileName = configuration.Fixed;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException("status");
+                }
+
+                if (!File.Exists(fileName))
+                {
+                    throw new FileNotFoundException(fileName);
+                }
+
                 var device = new WasapiOut(AudioClientShareMode.Shared, false, 100);
-                var stream = new TrackableWaveChannel(BuildStream(FileName));
+                var stream = new TrackableWaveChannel(BuildStream(fileName));
 
                 device.Init(stream);
                 device.Play();
