@@ -2,18 +2,20 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B13041AF-6522-4972-9760-1285A3EB1591}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AchtungPolizei.Plugins</RootNamespace>
-    <AssemblyName>AchtungPolizei.Plugins</AssemblyName>
+    <RootNamespace>AchtungPolizei.Plugins.TextToSpeechTest</RootNamespace>
+    <AssemblyName>AchtungPolizei.Plugins.TextToSpeechTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,7 +24,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,15 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildState.cs" />
-    <Compile Include="BuildStatus.cs" />
-    <Compile Include="ConfigurationBase.cs" />
-    <Compile Include="IConfigirationControl.cs" />
-    <Compile Include="IInputPlugin.cs" />
-    <Compile Include="IOutputPlugin.cs" />
-    <Compile Include="IPlugin.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatusReceivedEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Plugins.TextToSpeech\AchtungPolizei.Plugins.TextToSpeech.csproj">
+      <Project>{E32F0A3F-4EC3-4093-9AE3-DBE2AF6C6F8C}</Project>
+      <Name>AchtungPolizei.Plugins.TextToSpeech</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
+      <Project>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</Project>
+      <Name>AchtungPolizei.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

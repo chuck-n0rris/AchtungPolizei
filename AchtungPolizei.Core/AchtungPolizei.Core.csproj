@@ -45,6 +45,7 @@
     <Compile Include="Helpers\ProjectsSerializer.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectsRepository.cs" />
+    <Compile Include="ProjectStatusChangedArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

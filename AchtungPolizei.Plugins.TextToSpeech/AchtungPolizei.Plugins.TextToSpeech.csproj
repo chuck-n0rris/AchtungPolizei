@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</ProjectGuid>
+    <ProjectGuid>{E32F0A3F-4EC3-4093-9AE3-DBE2AF6C6F8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AchtungPolizei.Plugins</RootNamespace>
-    <AssemblyName>AchtungPolizei.Plugins</AssemblyName>
+    <RootNamespace>AchtungPolizei.Plugins.TextToSpeech</RootNamespace>
+    <AssemblyName>AchtungPolizei.Plugins.TextToSpeech</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,15 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildState.cs" />
-    <Compile Include="BuildStatus.cs" />
-    <Compile Include="ConfigurationBase.cs" />
-    <Compile Include="IConfigirationControl.cs" />
-    <Compile Include="IInputPlugin.cs" />
-    <Compile Include="IOutputPlugin.cs" />
-    <Compile Include="IPlugin.cs" />
+    <Compile Include="TextToSpeechConfiguration.cs" />
+    <Compile Include="TextToSpeechPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatusReceivedEventArgs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
+      <Project>{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA}</Project>
+      <Name>AchtungPolizei.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
