@@ -64,6 +64,16 @@ namespace AchtungPolizei.Plugins
             get { return "Light output plugin"; }
         }
 
+        public void SetConfiguration(ConfigurationBase configuration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IConfigirationControl GetConfigControl()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Start(BuildState state, BuildStatus status)
         {
             return Task.Factory.StartNew(() =>
