@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Linq;
 
 namespace AchtungPolizei.Plugins.Impl
 {
@@ -52,8 +53,20 @@ namespace AchtungPolizei.Plugins.Impl
                     return null;
                 }
 
-                return Error = (method.Invoke(this, new object[0]) as string);
+                var error = method.Invoke(this, new object[0]) as string;
+                Error = Error ?? error;
+                return error;
             }
+        }
+
+        /// <summary>
+        /// Validates this instance.
+        /// </summary>
+        /// <returns></returns>
+        public bool Validate()
+        {
+            ForceValidation();
+            return Error == null;
         }
 
         /// <summary>
@@ -66,6 +79,11 @@ namespace AchtungPolizei.Plugins.Impl
         {
             try
             {
+                if (PropertyChanged == null)
+                {
+                    return;
+                }
+
                 var expression = setter.Body as MemberExpression;
                 var name = expression.Member.Name;
 
@@ -88,6 +106,18 @@ namespace AchtungPolizei.Plugins.Impl
             {
                 throw new ApplicationException("Can't set property value.", exception);
             }
+        }
+
+        /// <summary>
+        /// Forces the validation.
+        /// </summary>
+        private void ForceValidation()
+        {
+            Error = Error ?? GetType()
+                                 .GetMethods()
+                                 .Where(x => x.Name.EndsWith("Validator"))
+                                 .Select(x => x.Invoke(this, new object[0]) as string)
+                                 .FirstOrDefault(x => x != null);
         }
     }
 }

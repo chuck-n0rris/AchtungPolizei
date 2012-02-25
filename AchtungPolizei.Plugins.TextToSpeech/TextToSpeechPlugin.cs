@@ -5,7 +5,7 @@
     using System.Speech.Synthesis;
     using System.Threading.Tasks;
     
-    using AchtungPolizei.Plugins;
+    using Plugins;
 
     public class TextToSpeechPlugin : IOutputPlugin
     {
@@ -22,7 +22,7 @@
 
         private const string name = "Text to Speech";
 
-        private IConfigirationControl control = new SettingsControl();
+        private IConfigirationControl control;
 
         private bool disposed;
 
@@ -60,10 +60,10 @@
         {
             this.configuration = configuration as TextToSpeechConfiguration;
         }
-
+        
         public IConfigirationControl GetConfigControl()
         {
-            return control;
+            return control ?? (control = new SettingsControl());
         }
 
         public Task Start(BuildState state, BuildStatus status)
