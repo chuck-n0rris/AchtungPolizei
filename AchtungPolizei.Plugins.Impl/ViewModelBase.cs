@@ -6,8 +6,24 @@ using System.Reflection;
 namespace AchtungPolizei.Plugins.Impl
 {
     /// <summary>
-    /// Base class for any view model.
+    /// Base class for any view model. Note: pay attention at following example of usage.
     /// </summary>
+    /// <example>
+    /// class MyViewModel : ViewModelBase&lt;MyViewModel&gt;
+    /// {
+    ///     private string name;
+    ///     public string Name
+    ///     {
+    ///         get { return name; }
+    ///         set { ChangeProperty(x => x.Name, value); }
+    ///     }
+    ///
+    ///     public string NameValidator()
+    ///     {
+    ///         return string.IsNullOrWhiteSpace(name) ? "Name can not be empty!" : null;
+    ///     }
+    /// }
+    /// </example>
     /// <typeparam name="T">Type of view model.</typeparam>
     public abstract class ViewModelBase<T> : IDataErrorInfo, INotifyPropertyChanged
     {
@@ -59,8 +75,13 @@ namespace AchtungPolizei.Plugins.Impl
                     fieldName, 
                     BindingFlags.Instance | BindingFlags.NonPublic);
 
-                field.SetValue(this, value);
+                var previousValue = (TProperty)field.GetValue(this);
+                if (value.Equals(previousValue))
+                {
+                    return;
+                }
 
+                field.SetValue(this, value);
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
             catch (Exception exception)
