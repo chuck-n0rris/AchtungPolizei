@@ -1,0 +1,28 @@
+﻿using System.Windows;
+using AchtungPolizei.Plugins.TextToSpeech;
+
+namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private IConfigirationControl settingsControl;
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            var plugin = new TextToSpeechPlugin();
+            settingsControl = plugin.GetConfigControl();
+
+            ContentControl.Content = settingsControl;
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var configuration = settingsControl.GetConfiguration();
+        }
+    }
+}

@@ -14,6 +14,11 @@
             this.projects = projects;
         }
 
+        private void ActivateInputPlugin()
+        {
+            
+        }
+
         public IEnumerable<Project> Projects
         {
             get { return projects; }

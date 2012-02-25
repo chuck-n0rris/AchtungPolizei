@@ -22,7 +22,7 @@
 
         private const string name = "Text to Speech";
 
-        private IConfigirationControl control = new SettingsControl();
+        private IConfigirationControl control;
 
         private bool disposed;
 
@@ -63,7 +63,7 @@
 
         public IConfigirationControl GetConfigControl()
         {
-            return control;
+            return control ?? (control = new SettingsControl());
         }
 
         public Task Start(BuildState state, BuildStatus status)
