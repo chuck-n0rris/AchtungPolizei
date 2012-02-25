@@ -21,7 +21,7 @@ namespace AchtungPolizei.Plugins.Impl
         public string Address
         {
             get { return GetParameter(addressKey, "http://hudson.example.com/"); }
-            set { Parameters[addressKey] = value; }
+            set { parameters[addressKey] = value; }
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace AchtungPolizei.Plugins.Impl
         public string Username
         {
             get { return GetParameter(usernameKey, "username"); }
-            set { Parameters[usernameKey] = value; }
+            set { parameters[usernameKey] = value; }
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AchtungPolizei.Plugins.Impl
         public string Password
         {
             get { return GetParameter(passwordKey, "password"); }
-            set { Parameters[passwordKey] = value; }
+            set { parameters[passwordKey] = value; }
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace AchtungPolizei.Plugins.Impl
         public string Project
         {
             get { return GetParameter(projectKey, "project"); }
-            set { Parameters[projectKey] = value; }
+            set { parameters[projectKey] = value; }
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace AchtungPolizei.Plugins.Impl
         public int PollInterval
         {
             get { return GetParameter(intervalKey, 10000); } 
-            set { Parameters[intervalKey] = value.ToString(); }
+            set { parameters[intervalKey] = value.ToString(); }
         }
     }
 }

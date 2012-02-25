@@ -4,20 +4,20 @@ namespace AchtungPolizei.Plugins.Impl
     {
         public string Path
         {
-            get { return Parameters["path"]; }
-            set { Parameters["path"] = value; }
+            get { return parameters["path"]; }
+            set { parameters["path"] = value; }
         }
 
         public string Device
         {
-            get { return Parameters["device"]; }
-            set { Parameters["device"] = value; }
+            get { return parameters["device"]; }
+            set { parameters["device"] = value; }
         }
 
         public string Socket
         {
-            get { return Parameters["socket"]; }
-            set { Parameters["socket"] = value; }
+            get { return parameters["socket"]; }
+            set { parameters["socket"] = value; }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace AchtungPolizei.Plugins.TextToSpeech
     {
         public TextToSpeechConfiguration()
         {
-            Parameters = new Dictionary<string, string>();
+            parameters = new Dictionary<string, string>();
         }
 
         private const string BuildBrokenPhraseParam = "BuildBrokenPhrase";
@@ -17,20 +17,20 @@ namespace AchtungPolizei.Plugins.TextToSpeech
 
         public string BuildBrokenPhrase
         {
-            get { return Parameters[BuildBrokenPhraseParam]; }
-            set { Parameters[BuildBrokenPhraseParam] = value; }
+            get { return parameters[BuildBrokenPhraseParam]; }
+            set { parameters[BuildBrokenPhraseParam] = value; }
         }
 
         public string BuildStillBrokenPhrase
         {
-            get { return Parameters[BuildStillBrokenPhraseParam]; }
-            set { Parameters[BuildStillBrokenPhraseParam] = value; }
+            get { return parameters[BuildStillBrokenPhraseParam]; }
+            set { parameters[BuildStillBrokenPhraseParam] = value; }
         }
 
         public string BuildFixedPhrase
         {
-            get { return Parameters[BuildFixedBrokenPhraseParam]; }
-            set { Parameters[BuildFixedBrokenPhraseParam] = value; }
+            get { return parameters[BuildFixedBrokenPhraseParam]; }
+            set { parameters[BuildFixedBrokenPhraseParam] = value; }
         }
     }
 }
