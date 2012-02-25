@@ -17,16 +17,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="1" Grid.Row="0" x:Name="Address" Text="{Binding Address}" />
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="Address" Text="{Binding Address, ValidatesOnDataErrors=True}" />
         <Label Grid.Column="0" Grid.Row="0" Target="{Binding ElementName=Address}" Content="Address" />
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="Username" Text="{Binding Username}" />
+        <TextBox Grid.Column="1" Grid.Row="1" x:Name="Username" Text="{Binding Username, ValidatesOnDataErrors=True}" />
         <Label Grid.Column="0" Grid.Row="1" Target="{Binding ElementName=Username}" Content="Username" />
         <!-- TODO: implement proper password handling -->
-        <TextBox Grid.Column="1" Grid.Row="2" x:Name="Password" Text="{Binding Password}" />
+        <TextBox Grid.Column="1" Grid.Row="2" x:Name="Password" Text="{Binding Password, ValidatesOnDataErrors=True}" />
         <Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}" Content="Password" />
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="Project" Text="{Binding Project}" />
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="Project" Text="{Binding Project, ValidatesOnDataErrors=True}" />
         <Label Grid.Column="0" Grid.Row="3" Target="{Binding ElementName=Project}" Content="Project" />
-        <Slider Grid.Column="1" Grid.Row="4" x:Name="PollInterval" Minimum="10000" Maximum="300000" Value="{Binding PollInterval}" />
+        <Slider Grid.Column="1" Grid.Row="4" x:Name="PollInterval" Minimum="10000" Maximum="300000" Value="{Binding PollInterval, ValidatesOnDataErrors=True}" />
         <Label Grid.Column="0" Grid.Row="4" Target="{Binding ElementName=PollInterval}" Content="Poll Interval (ms)" />
     </Grid>
 </UserControl>

@@ -10,5 +10,15 @@ namespace AchtungPolizei.Plugins
         }
 
         public IDictionary<string, string> Parameters { get; set; }
+
+        protected int GetParameter(string key, int defaultValue)
+        {
+            return Parameters.ContainsKey(key) ? int.Parse(Parameters[key]) : defaultValue;
+        }
+
+        protected string GetParameter(string key, string defaultValue)
+        {
+            return Parameters.ContainsKey(key) ? Parameters[key] : defaultValue;
+        }
     }
 }

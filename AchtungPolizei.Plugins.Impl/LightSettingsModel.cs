@@ -6,8 +6,8 @@ namespace AchtungPolizei.Plugins.Impl
 {
     public class LightSettingsModel : ViewModelBase<LightSettingsModel>
     {
-        private string device;
         private string path;
+        private string device;
         private string socket;
 
         public LightSettingsModel()
@@ -30,7 +30,7 @@ namespace AchtungPolizei.Plugins.Impl
         public string Socket
         {
             get { return socket; }
-            set { ChangeProperty(it => it.Device, value); }
+            set { ChangeProperty(it => it.Socket, value); }
         }
 
         public string PathValidator()
@@ -40,7 +40,7 @@ namespace AchtungPolizei.Plugins.Impl
                 return "Please enter Path to executable";
             }
 
-            if (Path.ToLowerInvariant().EndsWith(".exe"))
+            if (!Path.ToLowerInvariant().EndsWith(".exe"))
             {
                 return "Please select PowerManager executable";
             }

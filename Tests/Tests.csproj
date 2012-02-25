@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Tests.config">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Tests.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AchtungPolizei.Core\AchtungPolizei.Core.csproj">
