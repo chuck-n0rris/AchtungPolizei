@@ -11,7 +11,7 @@ namespace AchtungPolizei.Core.IntegrationTests
         public string Name
         {
             get { return GetParameter("key", "Default"); }
-            set { Parameters["key"] = value; }
+            set { parameters["key"] = value; }
         }
     }
 
@@ -59,11 +59,11 @@ namespace AchtungPolizei.Core.IntegrationTests
 
             Assert.AreEqual(1, actual.Length);
 
-            var configuration = actual[0].InputPlugin.Configuration;
-            Assert.AreEqual("Name 1", configuration.Parameters["key"]);
+            var configuration = actual[0].InputPlugin.Configuration as FooConfig;
+            Assert.AreEqual("Name 1", configuration.Name);
 
-            configuration = actual[0].OutputPlugins[0].Configuration;
-            Assert.AreEqual("Name 2", configuration.Parameters["key"]);
+            configuration = actual[0].OutputPlugins[0].Configuration as FooConfig;
+            Assert.AreEqual("Name 2", configuration.Name);
         }
     }
 }

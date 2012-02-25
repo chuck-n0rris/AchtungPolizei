@@ -14,7 +14,11 @@ namespace AchtungPolizei.Core
             try
             {
                 return JsonConvert.DeserializeObject<List<Project>>(
-                    File.ReadAllText(settings));
+                    File.ReadAllText(settings),
+                    new JsonSerializerSettings
+                        {
+                            TypeNameHandling = TypeNameHandling.Objects
+                        });
             }
             catch (Exception)
             {
@@ -28,7 +32,11 @@ namespace AchtungPolizei.Core
                 GetSettingsPath(),
                 JsonConvert.SerializeObject(
                     projects.ToList(),
-                    Formatting.Indented));
+                    Formatting.Indented,
+                    new JsonSerializerSettings
+                        {
+                            TypeNameHandling = TypeNameHandling.Objects
+                        }));
         }
 
         private string GetSettingsPath()
