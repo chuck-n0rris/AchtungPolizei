@@ -1,6 +1,8 @@
 ﻿namespace AchtungPolizei.Tray
 {
     using System.Windows;
+
+    using AchtungPolizei.Core;
     using AchtungPolizei.Core.Helpers;
 
     /// <summary>
@@ -21,9 +23,27 @@
             DataContext = model;
         }
 
+        public Project CreatedProject
+        {
+            get
+            {
+                return model.GetProject();
+            }
+        }
+
         private void AddOutputPluginClick(object sender, RoutedEventArgs e)
         {
             model.OutputConfigurationControls.Add((PluginViewModel)this.OutputPluginsComboBox.SelectedItem);
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private void CreateButtonClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }

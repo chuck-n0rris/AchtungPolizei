@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using AchtungPolizei.Plugins;
+﻿using System.Collections.Generic;
 
 namespace AchtungPolizei.Core
 {
     public class Project
     {
+        public Project()
+        {
+            OutputPlugins = new List<PluginConfiguration>();
+        }
+
         public string Name { get; set; }
 
-        public Guid InputPluginId { get; set; }
+        public PluginConfiguration InputPlugin { get; set; }
 
-        public List<Guid> OutputPluginIds { get; set; }
+        public List<PluginConfiguration> OutputPlugins { get; set; }
     }
 }

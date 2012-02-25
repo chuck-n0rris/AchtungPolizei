@@ -5,6 +5,7 @@ namespace AchtungPolizei.Tray
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
 
+    using AchtungPolizei.Core;
     using AchtungPolizei.Plugins;
 
     public class CreateProjectViewModel : ViewModelBase
@@ -15,6 +16,7 @@ namespace AchtungPolizei.Tray
         private IConfigirationControl inputConfigurationControl;
         private ObservableCollection<PluginViewModel> outputConfigurationControls;
         private IConfigirationControl outputConfigurationControl;
+        private PluginViewModel inputPlugin;
 
         private object configuration;
 
@@ -26,11 +28,31 @@ namespace AchtungPolizei.Tray
 
             // var inputPlugins = plugins.OfType<IInputPlugin>();
             // var outputPlugins = plugins.OfType<IOutputPlugin>();
-            this.InputPlugins.Add(new PluginViewModel { Name = "Input Test1", Configiration = new Test { Content = "Hello 1" } });
-            this.InputPlugins.Add(new PluginViewModel { Name = "Input Test2", Configiration = new Test { Content = "Hello 2" } });
+            this.InputPlugins.Add(new PluginViewModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Input Test1", 
+                    Configiration = new Test { Content = "Hello 1" }
+                });
+            this.InputPlugins.Add(new PluginViewModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Input Test2", 
+                    Configiration = new Test { Content = "Hello 2" }
+                });
 
-            this.OutputPlugins.Add(new PluginViewModel { Name = "Output Test1", Configiration = new Test { Content = "Hello 3" } });
-            this.OutputPlugins.Add(new PluginViewModel { Name = "Output Test2", Configiration = new Test { Content = "Hello 4" } });
+            this.OutputPlugins.Add(new PluginViewModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Output Test1", 
+                    Configiration = new Test { Content = "Hello 3" }
+                });
+            this.OutputPlugins.Add(new PluginViewModel
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Output Test2", 
+                    Configiration = new Test { Content = "Hello 4" }
+                });
         }
 
         public string Name
@@ -44,6 +66,19 @@ namespace AchtungPolizei.Tray
             {
                 this.name = value;
                 this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        public PluginViewModel InputPlugin
+        {
+            get
+            {
+                return this.inputPlugin;
+            }
+            set
+            {
+                this.inputPlugin = value;
+                this.RaisePropertyChanged("InputPlugin");
             }
         }
 
@@ -115,23 +150,28 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("OutputConfigurationControl");
             }
         }
-    }
 
-    public class Test : Button, IConfigirationControl
-    {
-        public bool Validate()
+        public Project GetProject()
         {
-            return false;
-        }
+            var project = new Project();
+            project.Name = this.Name;
+            project.InputPlugin = new PluginConfiguration
+                {
+                    PluginId = InputPlugin.Id,
+                    Configuration = InputPlugin.Configiration.GetConfiguration()
+                };
 
-        public ConfigurationBase GetConfiguration()
-        {
-            return null;
-        }
+            foreach (var pluginModel in OutputConfigurationControls)
+            {
+                project.OutputPlugins.Add(
+                    new PluginConfiguration
+                    {
+                        PluginId = pluginModel.Id,
+                        Configuration = pluginModel.Configiration.GetConfiguration()
+                    });
+            }
 
-        public Type GetConfigurationType()
-        {
-            return null;
+            return project;
         }
     }
 }
