@@ -1,5 +1,6 @@
 namespace AchtungPolizei.Tray
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Controls;
@@ -124,6 +125,11 @@ namespace AchtungPolizei.Tray
         }
 
         public ConfigurationBase GetConfiguration()
+        {
+            return null;
+        }
+
+        public Type GetConfigurationType()
         {
             return null;
         }
