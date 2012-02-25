@@ -1,7 +1,7 @@
-﻿namespace AchtungPolizei.Plugins
-{
-    using System;
+using System;
 
+namespace AchtungPolizei.Plugins
+{
     public class BuildState
     {
         /// <summary>
@@ -41,4 +41,5 @@
                 string.Join(", ", Authors));
         }
     }
+
 }

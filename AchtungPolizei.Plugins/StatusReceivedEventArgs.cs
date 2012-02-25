@@ -4,16 +4,16 @@ namespace AchtungPolizei.Plugins
 {
     public class StatusReceivedEventArgs : EventArgs
     {
-        private readonly BuildStatus status;
+        private readonly BuildState state;
 
-        public StatusReceivedEventArgs(BuildStatus status)
+        public StatusReceivedEventArgs(BuildState state)
         {
-            this.status = status;
+            this.state = state;
         }
 
-        public BuildStatus Status
+        public BuildState State
         {
-            get { return status; }
+            get { return state; }
         }
     }
 }
