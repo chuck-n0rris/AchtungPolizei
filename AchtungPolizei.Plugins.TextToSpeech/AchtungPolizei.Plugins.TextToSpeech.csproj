@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DBE39910-FD55-4E95-ACE5-E7012B178FCC}</ProjectGuid>
+    <ProjectGuid>{E32F0A3F-4EC3-4093-9AE3-DBE2AF6C6F8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AchtungPolizei.Core</RootNamespace>
-    <AssemblyName>AchtungPolizei.Core</AssemblyName>
+    <RootNamespace>AchtungPolizei.Plugins.TextToSpeech</RootNamespace>
+    <AssemblyName>AchtungPolizei.Plugins.TextToSpeech</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine.cs" />
-    <Compile Include="Helpers\PluginLocator.cs" />
-    <Compile Include="Helpers\ProjectsSerializer.cs" />
-    <Compile Include="Project.cs" />
-    <Compile Include="ProjectsRepository.cs" />
-    <Compile Include="ProjectStatusChangedArgs.cs" />
+    <Compile Include="TextToSpeechConfiguration.cs" />
+    <Compile Include="TextToSpeechPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">

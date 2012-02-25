@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DBE39910-FD55-4E95-ACE5-E7012B178FCC}</ProjectGuid>
+    <ProjectGuid>{7B966C23-B375-4E61-9961-B0CE907C3FEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AchtungPolizei.Core</RootNamespace>
-    <AssemblyName>AchtungPolizei.Core</AssemblyName>
+    <RootNamespace>AchtungPolizei.Plugins.Impl</RootNamespace>
+    <AssemblyName>AchtungPolizei.Plugins.Impl</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,21 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine.cs" />
-    <Compile Include="Helpers\PluginLocator.cs" />
-    <Compile Include="Helpers\ProjectsSerializer.cs" />
-    <Compile Include="Project.cs" />
-    <Compile Include="ProjectsRepository.cs" />
-    <Compile Include="ProjectStatusChangedArgs.cs" />
+    <Compile Include="HudsonPoller.cs" />
+    <Compile Include="CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HudsonPollerConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

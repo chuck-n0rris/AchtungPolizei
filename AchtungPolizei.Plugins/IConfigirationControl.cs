@@ -1,4 +1,4 @@
-﻿namespace AchtungPolizei.Plugins
+namespace AchtungPolizei.Plugins
 {
     public interface IConfigirationControl
     {
