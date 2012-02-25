@@ -53,7 +53,9 @@ namespace AchtungPolizei.Plugins.Impl
                     return null;
                 }
 
-                return Error = (method.Invoke(this, new object[0]) as string);
+                var error = method.Invoke(this, new object[0]) as string;
+                Error = Error ?? error;
+                return error;
             }
         }
 
@@ -111,11 +113,11 @@ namespace AchtungPolizei.Plugins.Impl
         /// </summary>
         private void ForceValidation()
         {
-            GetType()
-                .GetMethods()
-                .Where(x => x.Name.EndsWith("Validator"))
-                .ToList()
-                .ForEach(x => x.Invoke(this, new object[0]));
+            Error = Error ?? GetType()
+                                 .GetMethods()
+                                 .Where(x => x.Name.EndsWith("Validator"))
+                                 .Select(x => x.Invoke(this, new object[0]) as string)
+                                 .FirstOrDefault(x => x != null);
         }
     }
 }

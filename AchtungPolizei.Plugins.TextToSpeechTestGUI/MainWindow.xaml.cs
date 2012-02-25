@@ -23,6 +23,7 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(settingsControl.Validate() ? "Valid" : "Invalid");
             var configuration = settingsControl.GetConfiguration();
         }
     }
