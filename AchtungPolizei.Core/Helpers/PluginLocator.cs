@@ -57,6 +57,12 @@
 
         public static void Initialize(string path)
         {
+            // Already initialized.
+            if (pluginTypes != null)
+            {
+                return;
+            }
+
             var pluginLocator = new PluginLocator(path);
             pluginTypes = pluginLocator.FindPluginTypes();
 
