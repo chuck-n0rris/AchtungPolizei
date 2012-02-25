@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace AchtungPolizei.Plugins
+﻿namespace AchtungPolizei.Plugins
 {
+    using System;
+
     public interface IPlugin : IDisposable
     {
         Guid Id { get; }
@@ -9,6 +9,8 @@ namespace AchtungPolizei.Plugins
         string Name { get; }
 
         ConfigurationBase Configuration { get; set; }
+
+        IConfigirationControl GetConfigControl();
 
         event EventHandler<StatusReceivedEventArgs> StatusReceived;
     }

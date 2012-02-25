@@ -54,6 +54,11 @@
 
         public ConfigurationBase Configuration { get; set; }
 
+        public IConfigirationControl GetConfigControl()
+        {
+            throw new NotImplementedException();
+        }
+
         public event EventHandler<StatusReceivedEventArgs> StatusReceived;
 
         public Task Start(BuildState state, BuildStatus status)
