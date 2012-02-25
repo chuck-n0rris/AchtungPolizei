@@ -5,7 +5,7 @@
     using System.Speech.Synthesis;
     using System.Threading.Tasks;
     
-    using AchtungPolizei.Plugins;
+    using Plugins;
 
     public class TextToSpeechPlugin : IOutputPlugin
     {
@@ -53,6 +53,11 @@
         }
 
         public ConfigurationBase Configuration { get; set; }
+
+        public void SetConfiguration(ConfigurationBase configuration)
+        {
+            throw new NotImplementedException();
+        }
 
         public IConfigirationControl GetConfigControl()
         {
