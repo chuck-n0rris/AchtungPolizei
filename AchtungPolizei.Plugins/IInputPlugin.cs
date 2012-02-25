@@ -6,8 +6,6 @@ namespace AchtungPolizei.Plugins
     {
         IConfigirationControl GetConfigControl();
 
-        ConfigurationBase Configuration { get; set; }
-
-        event EventHandler<StatusReceivedEventArgs> StatusReceived;
+        
     }
 }
