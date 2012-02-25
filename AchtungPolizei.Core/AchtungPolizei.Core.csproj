@@ -48,6 +48,7 @@
     <Compile Include="OutputQue.cs" />
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectAgent.cs" />
     <Compile Include="ProjectsRepository.cs" />
     <Compile Include="ProjectStatusChangedArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
