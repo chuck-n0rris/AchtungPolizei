@@ -2,11 +2,9 @@
 
 namespace AchtungPolizei.Plugins
 {
-    using System.Windows.Controls;
-
     public interface IInputPlugin : IPlugin
     {
-        Control GetConfigControl();
+        IConfigirationControl GetConfigControl();
 
         ConfigurationBase Configuration { get; set; }
 
