@@ -2,10 +2,14 @@
 
 namespace AchtungPolizei.Plugins
 {
+    /// <summary>
+    /// Defines interface for input plugin.
+    /// </summary>
     public interface IInputPlugin : IPlugin
     {
-        IConfigirationControl GetConfigControl();
-
-        
+        /// <summary>
+        /// Occurs when build status is received from CI.
+        /// </summary>
+        event EventHandler<StatusReceivedEventArgs> StatusReceived;
     }
 }
