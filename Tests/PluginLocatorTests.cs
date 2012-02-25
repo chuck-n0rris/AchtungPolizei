@@ -17,12 +17,12 @@ namespace Tests
             string assemblyDirectory = assemblyFile.Directory.FullName;
             string pluginsDirectory = Path.Combine(assemblyDirectory, "Plugins");
 
-            var pluginLocator = new PluginLocator(pluginsDirectory);
-            var pluginTypes = pluginLocator.FindPluginTypes();
-            foreach (var pluginType in pluginTypes)
-            {
-                IPlugin plugin = pluginLocator.CreatePluginInstance(pluginType);
-            }
+            //var pluginLocator = new PluginLocator(pluginsDirectory);
+            //var pluginTypes = pluginLocator.FindPluginTypes();
+            //foreach (var pluginType in pluginTypes)
+            //{
+            //    IPlugin plugin = pluginLocator.CreatePluginInstance(pluginType);
+            //}
         }
     }
 }

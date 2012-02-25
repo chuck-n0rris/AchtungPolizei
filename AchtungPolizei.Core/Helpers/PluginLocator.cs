@@ -11,18 +11,52 @@
     public class PluginLocator
     {
         private readonly string pluginDirectoryPath;
-
         private readonly Type pluginInterface = typeof(IPlugin);
 
-        public PluginLocator(string pluginDirectoryPath)
+        private PluginLocator(string pluginDirectoryPath)
         {
             this.pluginDirectoryPath = pluginDirectoryPath;
+        }
+
+        public IEnumerable<IInputPlugin> InputPlugins { get; private set; }
+
+        public IEnumerable<IOutputPlugin> OutputPlugins { get; private set; }
+
+        public static PluginLocator Current { get; private set; }
+
+        public static void Initialize(string path)
+        {
+            var pluginLocator = new PluginLocator(path);
+            var pluginTypes = pluginLocator.FindPluginTypes();
+
+            var inputPlugins = new List<IInputPlugin>();
+            var outputPugins = new List<IOutputPlugin>();
+
+            foreach (var pluginType in pluginTypes)
+            {
+                var pluginInstance = pluginLocator.CreatePluginInstance(pluginType);
+
+                if (pluginInstance is IInputPlugin)
+                {
+                    inputPlugins.Add((IInputPlugin)pluginInstance);
+                }
+
+                if (pluginInstance is IOutputPlugin)
+                {
+                    outputPugins.Add((IOutputPlugin)pluginInstance);
+                }
+            }
+
+            pluginLocator.InputPlugins = inputPlugins;
+            pluginLocator.OutputPlugins = outputPugins;
+
+            Current = pluginLocator;
         }
 
         /// <summary>
         /// Finds plugin-compatible types in all assemblies from plugins directory.
         /// </summary>
-        public IEnumerable<Type> FindPluginTypes()
+        private IEnumerable<Type> FindPluginTypes()
         {
             var pluginDirectory = new DirectoryInfo(pluginDirectoryPath);
 
@@ -50,7 +84,7 @@
         /// </summary>
         /// <param name="pluginType"> Plugin type. </param>
         /// <returns> Plugin instance. </returns>
-        public IPlugin CreatePluginInstance(Type pluginType)
+        private IPlugin CreatePluginInstance(Type pluginType)
         {
             if (!pluginInterface.IsAssignableFrom(pluginType) || !pluginType.IsClass)
             {
