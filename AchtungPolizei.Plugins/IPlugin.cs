@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using System;
+﻿using System;
 
 namespace AchtungPolizei.Plugins
 {
@@ -11,6 +10,6 @@ namespace AchtungPolizei.Plugins
 
         ConfigurationBase Configuration { get; set; }
 
-        Control GetConfigControl();
+        event EventHandler<StatusReceivedEventArgs> StatusReceived;
     }
 }
