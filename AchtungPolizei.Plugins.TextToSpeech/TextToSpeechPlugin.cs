@@ -9,7 +9,7 @@
 
     public class TextToSpeechPlugin : IOutputPlugin
     {
-        private readonly Dictionary<BuildStatus, string> statusToText = new Dictionary<BuildStatus, string>
+        private readonly Dictionary<BuildStatus, string> defaultPhrases = new Dictionary<BuildStatus, string>
             {
                 { BuildStatus.Broken, "Build has been broken."},
                 { BuildStatus.StillBroken, "Build is still broken."},
@@ -52,9 +52,13 @@
             get { return name; }
         }
 
+        public ConfigurationBase Configuration { get; set; }
+
+        public event EventHandler<StatusReceivedEventArgs> StatusReceived;
+
         public Task Start(BuildState state, BuildStatus status)
         {
-            return new Task(Speak, statusToText[status]);
+            return new Task(Speak, GetPhrase(status));
         }
 
         private void Speak(object text)
@@ -62,6 +66,39 @@
             var builder = new PromptBuilder();
             builder.AppendText((string)text);
             synthesizer.Speak(builder);
+        }
+
+        private string GetPhrase(BuildStatus status)
+        {
+            var configuration = Configuration as TextToSpeechConfiguration;
+
+            string phrase = null;
+
+            if (configuration != null)
+            {
+                switch (status)
+                {
+                    case BuildStatus.Broken:
+                        phrase = configuration.BuildBrokenPhrase;
+                        break;
+
+                    case BuildStatus.StillBroken:
+                        phrase = configuration.BuildStillBrokenPhrase;
+                        break;
+
+                    case BuildStatus.Fixed:
+                        phrase = configuration.BuildFixedPhrase;
+                        break;
+
+                    default:
+                        phrase = "Unknown status";
+                        break;
+                }
+            }
+
+            return string.IsNullOrEmpty(phrase)
+                       ? defaultPhrases[status]
+                       : phrase;
         }
     }
 }
