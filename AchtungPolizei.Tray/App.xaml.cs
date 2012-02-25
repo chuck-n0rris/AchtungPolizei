@@ -1,7 +1,9 @@
 ﻿namespace AchtungPolizei.Tray
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Windows;
 
     using AchtungPolizei.Core.Helpers;
@@ -25,7 +27,11 @@
             var mainWindow = new MainWindow();
             mainWindow.Hide();
 
-            PluginLocator.Initialize("../Plugins/");
+            var assemblyFile = new FileInfo(Assembly.GetExecutingAssembly().FullName);
+            string assemblyDirectory = assemblyFile.Directory.FullName;
+            string pluginsDirectory = Path.Combine(assemblyDirectory, "Plugins");
+
+            PluginLocator.Initialize(pluginsDirectory);
         }
     }
 }
