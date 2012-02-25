@@ -24,7 +24,6 @@ namespace AchtungPolizei.Plugins.Impl
 
         private void StartPlay()
         {
-            //Process.Start(new ProcessStartInfo())
             Process.Start(ExecutablePath, BuildArguments("ON"));
         }
 
@@ -68,9 +67,7 @@ namespace AchtungPolizei.Plugins.Impl
         public IConfigirationControl GetConfigControl()
         {
             var model = new LightSettingsModel();
-
-            model.Device = "blablalba";
-            
+           
             var view = new LightSettingsView
                            {
                                DataContext = model

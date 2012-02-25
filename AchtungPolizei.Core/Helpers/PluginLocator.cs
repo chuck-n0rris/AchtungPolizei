@@ -11,44 +11,69 @@
     public class PluginLocator
     {
         private readonly string pluginDirectoryPath;
-        private readonly Type pluginInterface = typeof(IPlugin);
+        private static readonly Type pluginInterface = typeof(IPlugin);
+        private static readonly Type inputPluginInterface = typeof(IInputPlugin);
+        private static readonly Type outputPluginInterface = typeof(IOutputPlugin);
 
         private PluginLocator(string pluginDirectoryPath)
         {
             this.pluginDirectoryPath = pluginDirectoryPath;
         }
 
-        public IEnumerable<IInputPlugin> InputPlugins { get; private set; }
+        private static IEnumerable<Type> pluginTypes;
+        private static Dictionary<Guid, Type> idToTypeMap;
 
-        public IEnumerable<IOutputPlugin> OutputPlugins { get; private set; }
+        public IPlugin GetInstanceById(Guid pluginId)
+        {
+            return CreatePluginInstance(idToTypeMap[pluginId]);
+        }
+
+        private static IEnumerable<IPlugin> GetAllPlugins()
+        {
+            return pluginTypes
+                .Select(CreatePluginInstance)
+                .ToList();
+        }
+
+        public IEnumerable<IInputPlugin> GetAllInputPlugins()
+        {
+            return pluginTypes
+                .Where(inputPluginInterface.IsAssignableFrom)
+                .Select(CreatePluginInstance)
+                .Cast<IInputPlugin>()
+                .ToList();
+        }
+
+        public IEnumerable<IOutputPlugin> GetAllOutputPlugins()
+        {
+            return pluginTypes
+                .Where(outputPluginInterface.IsAssignableFrom)
+                .Select(CreatePluginInstance)
+                .Cast<IOutputPlugin>()
+                .ToList();
+        }
 
         public static PluginLocator Current { get; private set; }
 
         public static void Initialize(string path)
         {
-            var pluginLocator = new PluginLocator(path);
-            var pluginTypes = pluginLocator.FindPluginTypes();
-
-            var inputPlugins = new List<IInputPlugin>();
-            var outputPugins = new List<IOutputPlugin>();
-
-            foreach (var pluginType in pluginTypes)
+            // Already initialized.
+            if (pluginTypes != null)
             {
-                var pluginInstance = pluginLocator.CreatePluginInstance(pluginType);
-
-                if (pluginInstance is IInputPlugin)
-                {
-                    inputPlugins.Add((IInputPlugin)pluginInstance);
-                }
-
-                if (pluginInstance is IOutputPlugin)
-                {
-                    outputPugins.Add((IOutputPlugin)pluginInstance);
-                }
+                return;
             }
 
-            pluginLocator.InputPlugins = inputPlugins;
-            pluginLocator.OutputPlugins = outputPugins;
+            var pluginLocator = new PluginLocator(path);
+            pluginTypes = pluginLocator.FindPluginTypes();
+
+            // Prepare the fast mapping from plugin id to plugin type.
+            idToTypeMap = new Dictionary<Guid, Type>();
+            var dummyInstances = GetAllPlugins();
+            foreach (var dummyInstance in dummyInstances)
+            {
+                idToTypeMap.Add(dummyInstance.Id, dummyInstance.GetType());
+                dummyInstance.Dispose();
+            }
 
             Current = pluginLocator;
         }
@@ -84,7 +109,7 @@
         /// </summary>
         /// <param name="pluginType"> Plugin type. </param>
         /// <returns> Plugin instance. </returns>
-        private IPlugin CreatePluginInstance(Type pluginType)
+        private static IPlugin CreatePluginInstance(Type pluginType)
         {
             if (!pluginInterface.IsAssignableFrom(pluginType) || !pluginType.IsClass)
             {

@@ -17,7 +17,7 @@
         {
             InitializeComponent();
             
-            model = new CreateProjectViewModel(PluginLocator.Current.InputPlugins, PluginLocator.Current.OutputPlugins);
+            model = new CreateProjectViewModel(PluginLocator.Current.GetAllInputPlugins(), PluginLocator.Current.GetAllOutputPlugins());
             DataContext = model;
         }
 
