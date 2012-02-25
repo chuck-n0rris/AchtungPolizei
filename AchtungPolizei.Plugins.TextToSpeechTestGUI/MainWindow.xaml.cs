@@ -14,15 +14,17 @@ namespace AchtungPolizei.Plugins.TextToSpeechTestGUI
         {
             InitializeComponent();
 
-            var plugin = new LightOutputPlugin();
+<<<<<<< .mine            var plugin = new LightOutputPlugin();
 
-            settingsControl = plugin.GetConfigControl();
+=======            var plugin = new HudsonPoller();
+>>>>>>> .theirs            settingsControl = plugin.GetConfigControl();
 
             ContentControl.Content = settingsControl;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show(settingsControl.Validate() ? "Valid" : "Invalid");
             var configuration = settingsControl.GetConfiguration();
         }
     }

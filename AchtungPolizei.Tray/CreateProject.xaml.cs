@@ -16,13 +16,8 @@
         public CreateProject()
         {
             InitializeComponent();
-
-            var pluginsLocator = new PluginLocator("");
-            var pluginTypes = pluginsLocator.FindPluginTypes();
-
-            var plugins = pluginTypes.Select(pluginsLocator.CreatePluginInstance);
-
-            model = new CreateProjectViewModel(plugins);
+            
+            model = new CreateProjectViewModel(PluginLocator.Current.InputPlugins, PluginLocator.Current.OutputPlugins);
             DataContext = model;
         }
 
@@ -36,7 +31,12 @@
 
         private void AddOutputPluginClick(object sender, RoutedEventArgs e)
         {
-            model.OutputConfigurationControls.Add((PluginViewModel)this.OutputPluginsComboBox.SelectedItem);
+            var plugin = (PluginViewModel)this.OutputPluginsComboBox.SelectedItem;
+            if (plugin.Configiration.Validate())
+            {
+                model.OutputConfigurationControls.Add(plugin);
+                model.OutputConfigurationControl = null;
+            }
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

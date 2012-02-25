@@ -24,7 +24,7 @@
         <!-- TODO: implement proper password handling -->
         <TextBox Grid.Column="1" Grid.Row="2" x:Name="Password" Text="{Binding Password}" />
         <Label Grid.Column="0" Grid.Row="2" Target="{Binding ElementName=Password}" Content="Password" />
-        <TextBox Grid.Column="1" Grid.Row="3" x:Name="Project" Text="{Binding Address}" />
+        <TextBox Grid.Column="1" Grid.Row="3" x:Name="Project" Text="{Binding Project}" />
         <Label Grid.Column="0" Grid.Row="3" Target="{Binding ElementName=Project}" Content="Project" />
         <Slider Grid.Column="1" Grid.Row="4" x:Name="PollInterval" Minimum="10000" Maximum="300000" Value="{Binding PollInterval}" />
         <Label Grid.Column="0" Grid.Row="4" Target="{Binding ElementName=PollInterval}" Content="Poll Interval (ms)" />

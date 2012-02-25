@@ -33,7 +33,7 @@ namespace AchtungPolizei.Plugins.Impl
         /// </returns>
         public bool Validate()
         {
-            return (DataContext as ViewModel).Error == null;
+            return (DataContext as ViewModel).Validate();
         }
 
         /// <summary>

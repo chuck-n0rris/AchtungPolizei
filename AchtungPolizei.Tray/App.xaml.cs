@@ -1,11 +1,11 @@
 ﻿namespace AchtungPolizei.Tray
 {
-    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Media.Imaging;
 
-    using Hardcodet.Wpf.TaskbarNotification;
+    using AchtungPolizei.Core.Helpers;
+    using AchtungPolizei.Plugins;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -24,6 +24,8 @@
         {
             var mainWindow = new MainWindow();
             mainWindow.Hide();
+
+            PluginLocator.Initialize("../Plugins/");
         }
     }
 }
