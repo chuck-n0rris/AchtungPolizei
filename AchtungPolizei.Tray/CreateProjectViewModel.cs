@@ -26,33 +26,6 @@ namespace AchtungPolizei.Tray
             this.OutputPlugins = new ObservableCollection<PluginViewModel>();
             this.OutputConfigurationControls = new ObservableCollection<PluginViewModel>();
 
-            // var inputPlugins = plugins.OfType<IInputPlugin>();
-            // var outputPlugins = plugins.OfType<IOutputPlugin>();
-            this.InputPlugins.Add(new PluginViewModel
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Input Test1", 
-                    Configiration = new Test { Content = "Hello 1" }
-                });
-            this.InputPlugins.Add(new PluginViewModel
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Input Test2", 
-                    Configiration = new Test { Content = "Hello 2" }
-                });
-
-            this.OutputPlugins.Add(new PluginViewModel
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Output Test1", 
-                    Configiration = new Test { Content = "Hello 3" }
-                });
-            this.OutputPlugins.Add(new PluginViewModel
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Output Test2", 
-                    Configiration = new Test { Content = "Hello 4" }
-                });
         }
 
         public string Name

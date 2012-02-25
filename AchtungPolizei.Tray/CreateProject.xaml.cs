@@ -1,5 +1,6 @@
 ﻿namespace AchtungPolizei.Tray
 {
+    using System.Linq;
     using System.Windows;
 
     using AchtungPolizei.Core;
@@ -16,8 +17,10 @@
         {
             InitializeComponent();
 
-            var pluginsLocator = new PluginLocator();
-            var plugins = pluginsLocator.FindPlugins();
+            var pluginsLocator = new PluginLocator("");
+            var pluginTypes = pluginsLocator.FindPluginTypes();
+
+            var plugins = pluginTypes.Select(pluginsLocator.CreatePluginInstance);
 
             model = new CreateProjectViewModel(plugins);
             DataContext = model;
