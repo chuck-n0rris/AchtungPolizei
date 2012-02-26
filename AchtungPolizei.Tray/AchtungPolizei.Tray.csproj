@@ -78,7 +78,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SettingsViewModel.cs" />
-    <Compile Include="ViewModelBase.cs" />
     <Page Include="CreateProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -6,7 +6,9 @@ namespace AchtungPolizei.Tray
 {
     using System.Collections.ObjectModel;
 
-    public class SettingsViewModel : ViewModelBase
+    using AchtungPolizei.Plugins;
+
+    public class SettingsViewModel : ViewModelBase<SettingsViewModel>
     {
         private ObservableCollection<ProjectViewModel> projects;
 

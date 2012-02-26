@@ -5,7 +5,7 @@
         ResizeMode="NoResize"
         Title="Create Project" 
         Width="400" 
-        Height="400"
+        Height="500"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Tray="clr-namespace:AchtungPolizei.Tray"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance  Type=Tray:CreateProjectViewModel}">
