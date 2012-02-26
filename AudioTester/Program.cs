@@ -62,13 +62,13 @@ namespace AudioTester
                                                                   PluginId = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09"),
                                                                   Configuration = new SoundPluginConfiguration
                                                                                       {
-                                                                                         Broken = @"D:\Develop\hackaton\AchtungPolizei\AudioTester\bin\Debug\aircraft012.mp3"
+                                                                                         Broken = @"D:\sound.mp3"
                                                                                       }
                                                               }
                                                       }
             };
 
-            PluginLocator.Initialize(@"D:\Develop\hackaton\AchtungPolizei\AudioTester\bin\Debug");
+            PluginLocator.Initialize(@".");
 
             outputQue.Start();
 
