@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildStatusChangedEventArgs.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Helpers\PluginLocator.cs" />
     <Compile Include="OutputQue.cs" />

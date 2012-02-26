@@ -41,10 +41,10 @@ namespace AchtungPolizei.Core
         public void Start()
         {
             PluginLocator.Initialize(GetPluginDirectory());
-            this.projects = projectsRepository.GetProjects().ToList();
+            // this.projects = projectsRepository.GetProjects().ToList();
             this.consumer.Start();
 
-            ActivateProjectsAgents(projects);
+            // ActivateProjectsAgents(projects);
         }
 
         public void AddProject(Project project)
@@ -117,6 +117,22 @@ namespace AchtungPolizei.Core
                                             BuildStatus = buildStatus
                                         }
                                   });
+            OnBuildStatusChanged(project, buildState, buildStatus);
+        }
+
+        public event EventHandler<BuildStatusChangedEventArgs> BuildStatusChanged;
+
+        public void OnBuildStatusChanged(Project project, BuildState buildState, BuildStatus buildStatus)
+        {
+            if (BuildStatusChanged != null)
+            {
+                BuildStatusChanged(this, new BuildStatusChangedEventArgs
+                    {
+                        Project = project,
+                        BuildState = buildState,
+                        BuildStatus = buildStatus
+                    });
+            }
         }
 
         public IEnumerable<Project> Projects
