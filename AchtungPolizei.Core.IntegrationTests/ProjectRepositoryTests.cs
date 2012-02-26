@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using AchtungPolizei.Core.Helpers;
 using AchtungPolizei.Plugins;
+using AchtungPolizei.Plugins.Impl;
 using NUnit.Framework;
 
 namespace AchtungPolizei.Core.IntegrationTests
@@ -64,6 +67,49 @@ namespace AchtungPolizei.Core.IntegrationTests
 
             configuration = actual[0].OutputPlugins[0].Configuration as FooConfig;
             Assert.AreEqual("Name 2", configuration.Name);
+        }
+    }
+
+    [TestFixture]
+    public class OutputQueTests
+    {
+        [Test]
+        public void ShouldBeAbleToOutput()
+        {
+            var outputQue = new OutputQue();
+
+            var project = new Project()
+                              {
+                                  Name = "Hello",
+                                  OutputPlugins = new List<PluginConfiguration>
+                                                      {
+                                                          new PluginConfiguration()
+                                                              {
+                                                                  PluginId = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09"),
+                                                                  Configuration = new SoundPluginConfiguration
+                                                                                      {
+                                                                                         Broken = @"D:\Develop\hackaton\AchtungPolizei\AudioTester\bin\Debug\aircraft012.mp3"
+                                                                                      }
+                                                              }
+                                                      }
+                              };
+
+            PluginLocator.Initialize(@"D:\Develop\hackaton\AchtungPolizei\AchtungPolizei.Tray\bin\Debug\Plugins\");
+
+            outputQue.Start();
+
+            outputQue.Add(new ProcessRequest
+                              {
+                                  Project = project,
+                                  ProjectState = new ProjectState
+                                                     {
+                                                         BuildState = new BuildState(),
+                                                         BuildStatus = BuildStatus.Broken
+
+                                                     }
+                              });
+
+            Thread.Sleep(100000);
         }
     }
 }
