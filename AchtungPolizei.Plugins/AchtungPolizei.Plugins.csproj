@@ -52,7 +52,6 @@
     <Compile Include="IInputPlugin.cs" />
     <Compile Include="IOutputPlugin.cs" />
     <Compile Include="IPlugin.cs" />
-    <Compile Include="OutputPluginFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatusReceivedEventArgs.cs" />
     <Compile Include="ViewModelBase.cs" />

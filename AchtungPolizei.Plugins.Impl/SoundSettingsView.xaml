@@ -23,13 +23,13 @@
         <TextBlock Height="26" HorizontalAlignment="Right" Margin="0 4 4 4"  Text="Fixed" VerticalAlignment="Center"           Grid.Row="2" TextAlignment="Right" />
 
         <TextBox Grid.Column="1" Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="1" 
-                 Text="{Binding BrokenFile, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                 Text="{Binding BrokenFile}"/>
         
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="1" 
-                 Text="{Binding StillBrokenFile, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                 Text="{Binding StillBrokenFile}"/>
         
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="1" 
-                 Text="{Binding FixedFile, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
+                 Text="{Binding FixedFile}"/>
 
         <Button Command="{Binding SelectBrokenFile}" Content="..." Margin="4" Grid.Column="2"  />
         <Button Command="{Binding SelectStillBrokenFile}" Content="..." Margin="4" Grid.Column="2" Grid.Row="1" />

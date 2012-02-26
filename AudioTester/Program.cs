@@ -41,27 +41,27 @@ namespace AudioTester
                                                                                       }
                                                               },
                                                               
-                                                              //new PluginConfiguration()
-                                                              //{
-                                                              //    PluginId = Guid.Parse("7C9641FC-A6DE-4854-B583-CCD559C6C037"),
-                                                              //    Configuration = new LightPluginConfiguration()
-                                                              //                        {
-                                                              //                            Device = "Device2",
-                                                              //                            Miliseconds = 15000,
-                                                              //                            Path = @"C:\Program Files\Gembird\Power Manager\pm.exe",
-                                                              //                            Socket = "Socket1"
-                                                              //                        }
-                                                              //},
+                                                              new PluginConfiguration()
+                                                              {
+                                                                  PluginId = Guid.Parse("7C9641FC-A6DE-4854-B583-CCD559C6C037"),
+                                                                  Configuration = new LightPluginConfiguration()
+                                                                                      {
+                                                                                          Device = "Device2",
+                                                                                          Miliseconds = 15000,
+                                                                                          Path = @"C:\Program Files\Gembird\Power Manager\pm.exe",
+                                                                                          Socket = "Socket1"
+                                                                                      }
+                                                              },
 
-                                                              //new PluginConfiguration()
-                                                              //{
-                                                              //    PluginId = Guid.Parse("603e7da9-4cb1-4ac7-b84e-7ce12b3cbee3"),
-                                                              //    Configuration = new TextToSpeechConfiguration()
-                                                              //                        {
-                                                              //                            BuildBrokenPhrase = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-                                                              //                            BuildFixedPhrase = "I want to grape you in the mouth"
-                                                              //                        }
-                                                              //}
+                                                              new PluginConfiguration()
+                                                              {
+                                                                  PluginId = Guid.Parse("603e7da9-4cb1-4ac7-b84e-7ce12b3cbee3"),
+                                                                  Configuration = new TextToSpeechConfiguration()
+                                                                                      {
+                                                                                          BuildBrokenPhrase = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+                                                                                          BuildFixedPhrase = "I want to grape you in the mouth"
+                                                                                      }
+                                                              }
                                                       }
             };
 

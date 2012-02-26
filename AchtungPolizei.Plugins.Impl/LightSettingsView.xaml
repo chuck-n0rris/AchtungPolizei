@@ -25,16 +25,16 @@
         
         
         <TextBox Grid.Column="1" Height="26" HorizontalAlignment="Stretch" Margin="4"  VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="Auto" 
-                 Text="{Binding Path, ValidatesOnDataErrors=True}"/>
+                 Text="{Binding Path}"/>
         
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
-                 Text="{Binding Device, ValidatesOnDataErrors=True}"/>  
+                 Text="{Binding Device}"/>  
         
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
-                 Text="{Binding Socket, ValidatesOnDataErrors=True}"/>        
+                 Text="{Binding Socket}"/>        
         
         <Slider Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
-                 Value="{Binding Miliseconds, ValidatesOnDataErrors=True}"/>
+                 Value="{Binding Miliseconds}"/>
         
         <Button Content="..." Grid.Column="2" Height="26" Margin="4"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" 
                 Command="{Binding SelectFile}"/>
