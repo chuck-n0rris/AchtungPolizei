@@ -73,7 +73,7 @@ namespace AchtungPolizei.Core
                 };
 
             plugin.StatusReceived += ProjectStatusReceived;
-            // plugin.SetConfiguration(project.InputPlugin.Configuration);
+            plugin.SetConfiguration(project.InputPlugin.Configuration);
 
             projectAgents.Add(agent);
         }
