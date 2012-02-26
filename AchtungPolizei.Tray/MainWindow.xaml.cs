@@ -13,6 +13,8 @@ namespace AchtungPolizei.Tray
     using System;
     using System.Windows.Media.Imaging;
 
+    using Hardcodet.Wpf.TaskbarNotification;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -60,6 +62,12 @@ namespace AchtungPolizei.Tray
                     var viewModel = projectsViewModels.FirstOrDefault(vm => vm.Name == args.Project.Name);
                     if (viewModel != null)
                     {
+                        if (projectsViewModels.All(it => it.BuildStatus == BuildStatus.Fixed) &&
+                            args.BuildStatus == BuildStatus.Broken)
+                        {
+                            Taskbar.ShowBalloonTip(args.Project.Name, "The build has been broken.", BalloonIcon.Error);
+                        }
+
                         viewModel.SetStatus(args.BuildStatus);
                     }
 
