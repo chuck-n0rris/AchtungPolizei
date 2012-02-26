@@ -1,6 +1,5 @@
 namespace AchtungPolizei.Tray
 {
-    using System.Windows.Controls;
     using System.Windows.Media;
 
     using AchtungPolizei.Core;
@@ -8,27 +7,17 @@ namespace AchtungPolizei.Tray
 
     public class ProjectViewModel : ViewModelBase<ProjectViewModel>
     {
-        private string name;
-
-        public ProjectViewModel(Project project)
-        {
-            this.Name = project.Name;
-            this.StateColor = new SolidColorBrush(Colors.LimeGreen);
-        }
-
+        private readonly Project internalProject;
         private SolidColorBrush stateColor;
 
-        public SolidColorBrush StateColor
+        private string name;
+
+        public ProjectViewModel(Project internalProject)
         {
-            get
-            {
-                return this.stateColor;
-            }
-            set
-            {
-                this.stateColor = value;
-                this.RaisePropertyChanged("StateColor");
-            }
+            this.internalProject = internalProject;
+            this.Name = internalProject.Name;
+
+            this.StateColor = new SolidColorBrush(Colors.LimeGreen);
         }
 
         public string Name
@@ -44,5 +33,20 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("Name");
             }
         }
+
+        public SolidColorBrush StateColor
+        {
+            get
+            {
+                return this.stateColor;
+            }
+            set
+            {
+                this.stateColor = value;
+                this.RaisePropertyChanged("StateColor");
+            }
+        }
+
+        public Project Source { get { return internalProject; } }
     }
 }
