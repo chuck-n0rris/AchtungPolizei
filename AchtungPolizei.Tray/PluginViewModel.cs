@@ -3,7 +3,7 @@ namespace AchtungPolizei.Tray
     using System;
     using AchtungPolizei.Plugins;
 
-    public class PluginViewModel : ViewModelBase
+    public class PluginViewModel : ViewModelBase<PluginViewModel>
     {
         private Guid id;
         private string name;

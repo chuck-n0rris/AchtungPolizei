@@ -3,7 +3,7 @@ namespace AchtungPolizei.Tray
     using System;
     using AchtungPolizei.Plugins;
 
-    public class PluginPreviewItem : ViewModelBase
+    public class PluginPreviewItem : ViewModelBase<PluginPreviewItem>
     {
         private readonly IPlugin inputPlugins;
 

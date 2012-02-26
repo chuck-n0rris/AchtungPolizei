@@ -4,8 +4,9 @@ namespace AchtungPolizei.Tray
 
     using AchtungPolizei.Core;
     using AchtungPolizei.Core.Helpers;
+    using AchtungPolizei.Plugins;
 
-    public class CreateProjectViewModel : ViewModelBase
+    public class CreateProjectViewModel : ViewModelBase<CreateProjectViewModel>
     {
         private string name;
 
@@ -113,9 +114,10 @@ namespace AchtungPolizei.Tray
         {
             //var project = new Project();
             //project.Name = this.Name;
+            
             //project.InputPlugin = new PluginConfiguration
             //    {
-            //        PluginId =  InputPlugin.Id,
+            //        PluginId = InputPlugin.Id,
             //        Configuration = InputPlugin.Configuration.GetConfiguration()
             //    };
 

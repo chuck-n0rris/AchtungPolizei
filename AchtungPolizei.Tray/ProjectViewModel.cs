@@ -1,8 +1,9 @@
 namespace AchtungPolizei.Tray
 {
     using AchtungPolizei.Core;
+    using AchtungPolizei.Plugins;
 
-    public class ProjectViewModel : ViewModelBase
+    public class ProjectViewModel : ViewModelBase<ProjectViewModel>
     {
         private string name;
 
