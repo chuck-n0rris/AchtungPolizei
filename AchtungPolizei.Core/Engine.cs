@@ -23,7 +23,7 @@ namespace AchtungPolizei.Core
             get { return engine ?? (engine = new Engine()); }
         }
 
-        private List<Project> projects;
+        private readonly List<Project> projects = new List<Project>();
 
         private readonly List<ProjectAgent> projectAgents = new List<ProjectAgent>();
 
@@ -31,7 +31,7 @@ namespace AchtungPolizei.Core
 
         private readonly ProjectsRepository projectsRepository = new ProjectsRepository();
 
-        private string GetPluginDirectory()
+        public string GetPluginDirectory()
         {
             var assemblyFile = new FileInfo(Assembly.GetExecutingAssembly().FullName);
             string assemblyDirectory = assemblyFile.Directory.FullName;

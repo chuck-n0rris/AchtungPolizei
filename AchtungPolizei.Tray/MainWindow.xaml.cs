@@ -31,9 +31,15 @@ namespace AchtungPolizei.Tray
         {
             InitializeComponent();
             projects = repository.GetProjects();
+            
             projectsViewModels = CreateProjectsViewModels(projects);
 
             Engine.Current.BuildStatusChanged += BuildStatusChanged;
+
+            foreach (var project in projects)
+            {
+                Engine.Current.AddProject(project);
+            }
         }
 
         /// <summary>

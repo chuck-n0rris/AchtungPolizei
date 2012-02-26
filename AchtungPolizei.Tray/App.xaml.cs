@@ -26,11 +26,13 @@ namespace AchtungPolizei.Tray
         /// </param>
         private void ApplicationStartup(object sender, StartupEventArgs e)
         {
+            var engine = Engine.Current;
+
+            PluginLocator.Initialize(engine.GetPluginDirectory());
+            engine.Start();
+
             var mainWindow = new MainWindow();
             mainWindow.Hide();
-
-            var engine = Engine.Current;
-            engine.Start();
         }
     }
 }
