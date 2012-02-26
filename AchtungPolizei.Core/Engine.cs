@@ -51,6 +51,7 @@ namespace AchtungPolizei.Core
         {
             projects.Add(project);
             ActivateProjectAgent(project);
+            projectsRepository.SaveProjects(projects);
         }
 
         private void ActivateProjectsAgents(IEnumerable<Project> projects)

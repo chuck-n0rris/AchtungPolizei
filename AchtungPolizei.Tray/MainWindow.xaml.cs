@@ -91,7 +91,6 @@ namespace AchtungPolizei.Tray
         {
             var settings = new Settings(projectsViewModels);
             settings.ShowDialog();
-            repository.SaveProjects(projects);
         }
 
         /// <summary>
