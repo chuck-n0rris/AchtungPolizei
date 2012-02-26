@@ -42,5 +42,10 @@ namespace AchtungPolizei.Tray
         {
             Close();
         }
+
+        private void EditProjectClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

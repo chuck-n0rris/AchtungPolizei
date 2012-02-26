@@ -60,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UpdateProject.xaml.cs">
+      <DependentUpon>UpdateProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateProjectViewModel.cs" />
     <Compile Include="CreateProject.xaml.cs">
       <DependentUpon>CreateProject.xaml</DependentUpon>
     </Compile>
@@ -78,6 +82,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SettingsViewModel.cs" />
+    <Page Include="UpdateProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CreateProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
