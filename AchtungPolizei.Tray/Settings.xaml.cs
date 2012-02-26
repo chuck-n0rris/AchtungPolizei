@@ -3,6 +3,7 @@ using AchtungPolizei.Core;
 
 namespace AchtungPolizei.Tray
 {
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
 
@@ -11,13 +12,13 @@ namespace AchtungPolizei.Tray
     /// </summary>
     public partial class Settings
     {
-        private readonly IList<Project> projects;
+        private readonly ObservableCollection<ProjectViewModel> projects;
         private SettingsViewModel model;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Settings"/> class.
         /// </summary>
-        public Settings(IList<Project> projects)
+        public Settings(ObservableCollection<ProjectViewModel> projects)
         {
             this.projects = projects;
 
@@ -34,8 +35,10 @@ namespace AchtungPolizei.Tray
 
             if (createDialogResult.HasValue && createDialogResult.Value)
             {
-                projects.Add(createDialog.CreatedProject);
-                model.Projects.Add(new ProjectViewModel(createDialog.CreatedProject));
+                projects.Add(new ProjectViewModel(createDialog.CreatedProject));
+                
+                // model.Projects.Add(new ProjectViewModel(createDialog.CreatedProject));
+                
                 Engine.Current.AddProject(createDialog.CreatedProject);
             }
         }
@@ -54,8 +57,8 @@ namespace AchtungPolizei.Tray
             
             if (dialogResult.HasValue && dialogResult.Value)
             {
-                projects.Add(updateProject.CreatedProject);
-                model.Projects.Add(new ProjectViewModel(updateProject.CreatedProject));
+                //projects.Add(updateProject.CreatedProject);
+                //model.Projects.Add(new ProjectViewModel(updateProject.CreatedProject));
             }
         }
     }

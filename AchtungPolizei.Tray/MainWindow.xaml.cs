@@ -49,8 +49,6 @@ namespace AchtungPolizei.Tray
             Dispatcher.BeginInvoke(DispatcherPriority.Normal, callback, parameter);
         }
 
-
-
         /// <summary>
         /// Raised when build status of some project was changed.
         /// </summary>
@@ -66,6 +64,7 @@ namespace AchtungPolizei.Tray
                     {
                         viewModel.StateColor = new SolidColorBrush(buildStatusToColor[args.BuildStatus]);
                     }
+
                 }, e);
         }
 
@@ -90,7 +89,7 @@ namespace AchtungPolizei.Tray
         /// </param>
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
-            var settings = new Settings(projects);
+            var settings = new Settings(projectsViewModels);
             settings.ShowDialog();
             repository.SaveProjects(projects);
         }

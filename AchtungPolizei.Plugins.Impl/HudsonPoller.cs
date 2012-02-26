@@ -17,6 +17,8 @@ namespace AchtungPolizei.Plugins.Impl
         private bool isAuthenticated;
         private Timer timer;
 
+        private XmlDocument lastResponce;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="HudsonPoller"/> class.
         /// </summary>
@@ -110,8 +112,6 @@ namespace AchtungPolizei.Plugins.Impl
 
         private void Poll(object state)
         {
-            timer.Change(Timeout.Infinite, Timeout.Infinite);
-
             if (StatusReceived == null)
             {
                 return;
@@ -171,12 +171,17 @@ namespace AchtungPolizei.Plugins.Impl
                 throw args.Error;
             }
 
-            document.LoadXml(args.Result);
+            lastResponce = new XmlDocument();
+            lastResponce.LoadXml(args.Result);
 
-            StatusReceived(
-                this,
-                new StatusReceivedEventArgs(
-                    new BuildState
+            if (lastResponce.SelectSingleNode("freeStyleBuild/result") != null)
+            {
+                document.LoadXml(args.Result);
+
+                StatusReceived(
+                    this,
+                    new StatusReceivedEventArgs(
+                        new BuildState
                         {
                             Authors = GetAuthors(),
                             IsSuccessful = GetIsSuccessful(),
@@ -184,9 +189,7 @@ namespace AchtungPolizei.Plugins.Impl
                             Project = configuration.Project,
                             Time = GetTime()
                         }));
-
-            timer.Change(0, configuration.PollInterval);
-
+            }
         }
 
         private DateTime GetTime()

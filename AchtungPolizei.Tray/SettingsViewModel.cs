@@ -12,10 +12,9 @@ namespace AchtungPolizei.Tray
     {
         private ObservableCollection<ProjectViewModel> projects;
 
-        public SettingsViewModel(IEnumerable<Project> projects)
+        public SettingsViewModel(ObservableCollection<ProjectViewModel> projects)
         {
-            Projects = new ObservableCollection<ProjectViewModel>(
-                projects.Select(x => new ProjectViewModel(x)));
+            Projects = projects;
         }
 
         public ObservableCollection<ProjectViewModel> Projects
