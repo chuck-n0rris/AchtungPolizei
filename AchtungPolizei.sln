@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Plugins.Text
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Core.IntegrationTests", "AchtungPolizei.Core.IntegrationTests\AchtungPolizei.Core.IntegrationTests.csproj", "{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AchtungPolizei.Plugins.TeamFoundation", "AchtungPolizei.Plugins.TeamFoundation\AchtungPolizei.Plugins.TeamFoundation.csproj", "{A3481BC5-C259-403D-9199-969FAA682E6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,17 @@ Global
 		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{07F5AB16-101E-4EC1-AE24-304D7B4AC9E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A3481BC5-C259-403D-9199-969FAA682E6F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,5 +178,6 @@ Global
 		{7B966C23-B375-4E61-9961-B0CE907C3FEE} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
 		{5AA3EEB4-AAC7-40F7-8AE9-AF80B10D40BA} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
 		{C713C52A-FC0F-4317-B137-1A50D0C5FB2E} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
+		{A3481BC5-C259-403D-9199-969FAA682E6F} = {2793471C-218D-44CE-8D66-24DD0FC7203A}
 	EndGlobalSection
 EndGlobal
