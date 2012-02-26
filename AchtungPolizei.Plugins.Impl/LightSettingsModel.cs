@@ -9,6 +9,7 @@ namespace AchtungPolizei.Plugins.Impl
         private string path;
         private string device;
         private string socket;
+        private int miliseconds;
 
         public LightSettingsModel()
         {
@@ -31,6 +32,17 @@ namespace AchtungPolizei.Plugins.Impl
         {
             get { return socket; }
             set { ChangeProperty(it => it.Socket, value); }
+        }
+
+        public int Miliseconds
+        {
+            get { return miliseconds; }
+            set { ChangeProperty(it => it.Miliseconds, value); }
+        }
+
+        public string MilisecondsValidator()
+        {
+            return Miliseconds > 0 ? null : "Miliseconds should be positive";
         }
 
         public string PathValidator()
@@ -91,6 +103,17 @@ namespace AchtungPolizei.Plugins.Impl
             if (result == true)
             {
                 this.Path = dlg.FileName;
+            }
+        }
+
+        public void Initialize(LightPluginConfiguration configuration)
+        {
+            if (configuration != null)
+            {
+                this.Device = configuration.Device;
+                this.Path = configuration.Path;
+                this.Socket = configuration.Socket;
+                this.Miliseconds = configuration.Miliseconds;
             }
         }
     }

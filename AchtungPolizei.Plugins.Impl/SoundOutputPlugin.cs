@@ -10,11 +10,7 @@ namespace AchtungPolizei.Plugins.Impl
     {
         private readonly Guid guid = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09");
         private SoundPluginConfiguration configuration;
-
-        public SoundOutputPlugin()
-        {
-            
-        }
+        private WasapiOut device;
 
         public void Dispose()
         {
@@ -34,14 +30,18 @@ namespace AchtungPolizei.Plugins.Impl
         public void SetConfiguration(ConfigurationBase configuration)
         {
             this.configuration = (SoundPluginConfiguration) configuration;
+            this.device = new WasapiOut(AudioClientShareMode.Shared, 100);
         }
 
         public IConfigirationControl GetConfigControl()
         {
+            var soundSettingsModel = new SoundSettingsModel();
+            soundSettingsModel.Initialize(this.configuration);
+
             return new SoundSettingsView
-                       {
-                           DataContext = new SoundSettingsModel()
-                       };
+            {
+                DataContext = soundSettingsModel
+            };
         }
 
         public Task Start(BuildState state, BuildStatus status)
@@ -67,26 +67,30 @@ namespace AchtungPolizei.Plugins.Impl
                         throw new ArgumentOutOfRangeException("status");
                 }
 
-                if (!File.Exists(fileName))
+                if (File.Exists(fileName))
                 {
-                    throw new FileNotFoundException(fileName);
-                }
+                    var device = new WasapiOut(AudioClientShareMode.Shared, false, 100);
+                    var stream = new TrackableWaveChannel(BuildStream(fileName));
 
-                var device = new WasapiOut(AudioClientShareMode.Shared, false, 100);
-                var stream = new TrackableWaveChannel(BuildStream(fileName));
+                    device.Init(stream);
+                    device.Play();
 
-                device.Init(stream);
-                device.Play();
-
-                stream.Finished += (sender, args) =>
-                {
-                    tcs.SetResult(0);
+                    stream.Finished += (sender, args) =>
+                    {
+                        tcs.SetResult(0);
                     
-                    stream.Dispose();
-                    device.Dispose();
-                    stream = null;
-                    device = null;
-                };
+                        stream.Dispose();
+                        device.Dispose();
+                        stream = null;
+                        device = null;
+                    };
+                }
+                else
+                {
+                    var task = tcs.Task;
+                    tcs.SetResult(0);
+                    return task;
+                }
             }
             catch (Exception e)
             {
