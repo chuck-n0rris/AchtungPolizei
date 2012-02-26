@@ -8,7 +8,7 @@ namespace AchtungPolizei.Core
 {
     public class ProjectsRepository
     {
-        public IEnumerable<Project> GetProjects()
+        public IList<Project> GetProjects()
         {
             var settings = GetSettingsPath();
             try

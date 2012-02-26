@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using AchtungPolizei.Core;
 
 namespace AchtungPolizei.Tray
 {
@@ -7,12 +9,16 @@ namespace AchtungPolizei.Tray
     /// </summary>
     public partial class MainWindow
     {
+        private IList<Project> projects;
+        private readonly ProjectsRepository repository = new ProjectsRepository();
+ 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+            projects = repository.GetProjects();
         }
 
         /// <summary>
@@ -25,8 +31,9 @@ namespace AchtungPolizei.Tray
         /// </param>
         private void OnSettingsClick(object sender, RoutedEventArgs e)
         {
-            var settings = new Settings();
+            var settings = new Settings(projects);
             settings.ShowDialog();
+            repository.SaveProjects(projects);
         }
 
         /// <summary>

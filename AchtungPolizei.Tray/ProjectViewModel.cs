@@ -1,27 +1,36 @@
+using AchtungPolizei.Core;
+
 namespace AchtungPolizei.Tray
 {
-    using AchtungPolizei.Core;
-
+    /// <summary>
+    /// The project view model.
+    /// </summary>
     public class ProjectViewModel : ViewModelBase
     {
         private string name;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectViewModel"/> class.
+        /// </summary>
+        /// <param name="project">
+        /// The project.
+        /// </param>
         public ProjectViewModel(Project project)
         {
-            this.Name = project.Name;
+            Name = project.Name;
         }
 
+        /// <summary>
+        /// Gets or sets Name.
+        /// </summary>
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
+            get { return name; }
 
             set
             {
-                this.name = value;
-                this.RaisePropertyChanged("Name");
+                name = value;
+                RaisePropertyChanged("Name");
             }
         }
     }
