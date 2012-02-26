@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 using AchtungPolizei.Core;
 using AchtungPolizei.Plugins;
 
@@ -42,6 +44,13 @@ namespace AchtungPolizei.Tray
             }
         }
 
+        private void SyncContext(WaitCallback callback, object parameter)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, callback, parameter);
+        }
+
+
+
         /// <summary>
         /// Raised when build status of some project was changed.
         /// </summary>
@@ -49,11 +58,15 @@ namespace AchtungPolizei.Tray
         /// <param name="e"> Event arguments. </param>
         private void BuildStatusChanged(object sender, BuildStatusChangedEventArgs e)
         {
-            var viewModel = projectsViewModels.FirstOrDefault(vm => vm.Name == e.Project.Name);
-            if (viewModel != null)
-            {
-                viewModel.StateColor = new SolidColorBrush(buildStatusToColor[e.BuildStatus]);
-            }
+            SyncContext(state =>
+                {
+                    var args = (BuildStatusChangedEventArgs) state;
+                    var viewModel = projectsViewModels.FirstOrDefault(vm => vm.Name == args.Project.Name);
+                    if (viewModel != null)
+                    {
+                        viewModel.StateColor = new SolidColorBrush(buildStatusToColor[args.BuildStatus]);
+                    }
+                }, e);
         }
 
         /// <summary>
