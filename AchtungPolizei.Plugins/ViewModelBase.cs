@@ -1,11 +1,11 @@
-using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Linq;
-
-namespace AchtungPolizei.Plugins.Impl
+namespace AchtungPolizei.Plugins
 {
+    using System;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+
     /// <summary>
     /// Base class for any view model. Note: pay attention at following example of usage.
     /// </summary>
@@ -47,14 +47,14 @@ namespace AchtungPolizei.Plugins.Impl
         {
             get
             {
-                var method = GetType().GetMethod(columnName + "Validator");
+                var method = this.GetType().GetMethod(columnName + "Validator");
                 if (method == null)
                 {
                     return null;
                 }
 
                 var error = method.Invoke(this, new object[0]) as string;
-                Error = Error ?? error;
+                this.Error = this.Error ?? error;
                 return error;
             }
         }
@@ -65,8 +65,8 @@ namespace AchtungPolizei.Plugins.Impl
         /// <returns></returns>
         public bool Validate()
         {
-            ForceValidation();
-            return Error == null;
+            this.ForceValidation();
+            return this.Error == null;
         }
 
         /// <summary>
@@ -79,14 +79,12 @@ namespace AchtungPolizei.Plugins.Impl
         {
             try
             {
-                
-
                 var expression = setter.Body as MemberExpression;
                 var name = expression.Member.Name;
 
                 // assumption: field names are in camel case without leading underscore
                 var fieldName = char.ToLower(name[0]) + name.Substring(1);
-                var field = GetType().GetField(
+                var field = this.GetType().GetField(
                     fieldName, 
                     BindingFlags.Instance | BindingFlags.NonPublic);
 
@@ -98,9 +96,9 @@ namespace AchtungPolizei.Plugins.Impl
 
                 field.SetValue(this, value);
 
-                if (PropertyChanged != null)
+                if (this.PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs(name));
+                    this.PropertyChanged(this, new PropertyChangedEventArgs(name));
                 }
             }
             catch (Exception exception)
@@ -109,12 +107,21 @@ namespace AchtungPolizei.Plugins.Impl
             }
         }
 
+        public void RaisePropertyChanged(string propertyName)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         /// <summary>
         /// Forces the validation.
         /// </summary>
         private void ForceValidation()
         {
-            Error = Error ?? GetType()
+            this.Error = this.Error ?? this.GetType()
                                  .GetMethods()
                                  .Where(x => x.Name.EndsWith("Validator"))
                                  .Select(x => x.Invoke(this, new object[0]) as string)
