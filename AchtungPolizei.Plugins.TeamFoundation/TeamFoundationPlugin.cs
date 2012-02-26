@@ -81,6 +81,11 @@ namespace AchtungPolizei.Plugins.TeamFoundation
             return new TeamFoundationSettingsControl(configuration);
         }
 
+        public IConfigirationControl GetConfigControl(ConfigurationBase config)
+        {
+            return new TeamFoundationSettingsControl((TeamFoundationConfiguration)config);
+        }
+
         private void OnStatusReceived(bool isSuccess)
         {
             var buildState = new BuildState
