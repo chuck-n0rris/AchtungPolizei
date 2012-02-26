@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace AchtungPolizei.Plugins.TextToSpeech
 {
@@ -17,19 +18,50 @@ namespace AchtungPolizei.Plugins.TextToSpeech
 
         public string BuildBrokenPhrase
         {
-            get { return parameters[BuildBrokenPhraseParam]; }
+            get
+            {
+                try
+                {
+                    return parameters[BuildBrokenPhraseParam];    
+                }
+                catch (KeyNotFoundException)
+                {
+                    return null;
+                }
+            }
             set { parameters[BuildBrokenPhraseParam] = value; }
         }
 
         public string BuildStillBrokenPhrase
         {
-            get { return parameters[BuildStillBrokenPhraseParam]; }
+            get
+            {
+                try
+                {
+                    return parameters[BuildStillBrokenPhraseParam];
+                }
+                catch (KeyNotFoundException)
+                {
+                    return null;
+                }
+                
+            }
             set { parameters[BuildStillBrokenPhraseParam] = value; }
         }
 
         public string BuildFixedPhrase
         {
-            get { return parameters[BuildFixedBrokenPhraseParam]; }
+            get
+            {
+                try
+                {
+                    return parameters[BuildFixedBrokenPhraseParam];
+                }
+                catch (KeyNotFoundException)
+                {
+                    return null;
+                }
+            }
             set { parameters[BuildFixedBrokenPhraseParam] = value; }
         }
     }

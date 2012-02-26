@@ -11,11 +11,25 @@ namespace AchtungPolizei.Core
 
     public class Engine
     {
-        private List<Project> projects = new List<Project>();
+        private static Engine engine;
+
+        private Engine()
+        {
+            
+        }
+
+        public static Engine Current
+        {
+            get { return engine ?? (engine = new Engine()); }
+        }
+
+        private List<Project> projects;
 
         private readonly List<ProjectAgent> projectAgents = new List<ProjectAgent>();
 
         private readonly OutputQue consumer = new OutputQue();
+
+        private readonly ProjectsRepository projectsRepository = new ProjectsRepository();
 
         private string GetPluginDirectory()
         {
@@ -24,13 +38,19 @@ namespace AchtungPolizei.Core
             return Path.Combine(assemblyDirectory, "Plugins");
         }
 
-        public void Start(List<Project> projects)
+        public void Start()
         {
-            this.projects = projects;
+            PluginLocator.Initialize(GetPluginDirectory());
+            this.projects = projectsRepository.GetProjects().ToList();
             this.consumer.Start();
 
-            PluginLocator.Initialize(GetPluginDirectory());
             ActivateProjectsAgents(projects);
+        }
+
+        public void AddProject(Project project)
+        {
+            projects.Add(project);
+            ActivateProjectAgent(project);
         }
 
         private void ActivateProjectsAgents(IEnumerable<Project> projects)
@@ -53,7 +73,7 @@ namespace AchtungPolizei.Core
                 };
 
             plugin.StatusReceived += ProjectStatusReceived;
-            plugin.SetConfiguration(project.InputPlugin.Configuration);
+            // plugin.SetConfiguration(project.InputPlugin.Configuration);
 
             projectAgents.Add(agent);
         }
@@ -88,8 +108,6 @@ namespace AchtungPolizei.Core
 
         private void QueueOutputEvent(Project project, BuildState buildState, BuildStatus buildStatus)
         {
-            // throw new NotImplementedException("Implement adding output event to the queue.");
-
             this.consumer.Add(new ProcessRequest
                                   {
                                       Project = project,
