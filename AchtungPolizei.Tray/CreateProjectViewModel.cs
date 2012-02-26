@@ -112,28 +112,28 @@ namespace AchtungPolizei.Tray
         
         public Project GetProject()
         {
-            //var project = new Project();
-            //project.Name = this.Name;
-            
-            //project.InputPlugin = new PluginConfiguration
-            //    {
-            //        PluginId = InputPlugin.Id,
-            //        Configuration = InputPlugin.Configuration.GetConfiguration()
-            //    };
+            var project = new Project();
+            project.Name = this.Name;
 
-            //foreach (var pluginModel in OutputConfigurationControls)
-            //{
-            //    project.OutputPlugins.Add(
-            //        new PluginConfiguration
-            //        {
-            //            PluginId = pluginModel.Id,
-            //            Configuration = pluginModel.Configuration.GetConfiguration()
-            //        });
-            //}
+            project.InputPlugin = new PluginConfiguration
+            {
+                PluginId = SelectedInputPlugin.Id,
+                Configuration = SelectedInputPlugin.Configuration.GetConfiguration()
+            };
 
-            return null;
+            foreach (var pluginModel in SelectedOutputPlugins)
+            {
+                project.OutputPlugins.Add(
+                    new PluginConfiguration
+                    {
+                        PluginId = pluginModel.Id,
+                        Configuration = pluginModel.Configuration.GetConfiguration()
+                    });
+            }
+
+            return project;
         }
-
+        
         private void InitializeCollections()
         {
             foreach (var inputPlugin in PluginLocator.Current.GetAllInputPlugins())

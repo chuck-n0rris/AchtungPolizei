@@ -18,9 +18,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
-        <TextBlock Height="26" HorizontalAlignment="Right" Margin="4"  Text="Broken" VerticalAlignment="Center"          TextAlignment="Right" />
-        <TextBlock Height="26" HorizontalAlignment="Right" Margin="4"  Text="Still broken" VerticalAlignment="Center"    Grid.Row="1" TextAlignment="Right" />
-        <TextBlock Height="26" HorizontalAlignment="Right" Margin="4"  Text="Fixed" VerticalAlignment="Center"           Grid.Row="2" TextAlignment="Right" />
+        <TextBlock Height="26" HorizontalAlignment="Right" Margin="0 4 4 4"  Text="Broken" VerticalAlignment="Center"          TextAlignment="Right" />
+        <TextBlock Height="26" HorizontalAlignment="Right" Margin="0 4 4 4"  Text="Still broken" VerticalAlignment="Center"    Grid.Row="1" TextAlignment="Right" />
+        <TextBlock Height="26" HorizontalAlignment="Right" Margin="0 4 4 4"  Text="Fixed" VerticalAlignment="Center"           Grid.Row="2" TextAlignment="Right" />
 
         <TextBox Grid.Column="1" Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="1" 
                  Text="{Binding BrokenFile, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
