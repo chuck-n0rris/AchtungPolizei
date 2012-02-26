@@ -44,6 +44,17 @@ namespace AchtungPolizei.Plugins.Impl
             };
         }
 
+        public IConfigirationControl GetConfigControl(ConfigurationBase config)
+        {
+            var soundSettingsModel = new SoundSettingsModel();
+            soundSettingsModel.Initialize((SoundPluginConfiguration)config);
+
+            return new SoundSettingsView
+            {
+                DataContext = soundSettingsModel
+            };
+        }
+
         public Task Start(BuildState state, BuildStatus status)
         {
             var tcs = new TaskCompletionSource<byte>();

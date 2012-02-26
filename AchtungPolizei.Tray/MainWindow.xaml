@@ -5,8 +5,39 @@
         ShowActivated="False"
         Visibility="Collapsed" >
     <Grid>
-        <taskbar:TaskbarIcon 
-            IconSource="/Images/green_light.ico" >
+        <taskbar:TaskbarIcon x:Name="Taskbar"
+            IconSource="/Images/yellow_light.ico" >
+            <taskbar:TaskbarIcon.TrayToolTip>
+                <Border CornerRadius="10" Width="300" Height="100" Background="White" BorderBrush="Black"  >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="AchtungPolizei" Margin="5"  />
+                        
+                        <ItemsControl x:Name="ProjectsItemsControl" Grid.Row="1" ItemsSource="{Binding}" >
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Height="20" Margin="5" Padding="10 0" >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Foreground="{Binding StateColor}" VerticalAlignment="Center" Text="{Binding Name}" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>                    
+                </Border>
+            </taskbar:TaskbarIcon.TrayToolTip>
+
+
             <taskbar:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Settings..." Click="OnSettingsClick" />
