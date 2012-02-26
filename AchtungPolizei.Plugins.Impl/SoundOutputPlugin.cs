@@ -10,7 +10,6 @@ namespace AchtungPolizei.Plugins.Impl
     {
         private readonly Guid guid = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09");
         private SoundPluginConfiguration configuration;
-        private WasapiOut device;
 
         public void Dispose()
         {
@@ -30,7 +29,7 @@ namespace AchtungPolizei.Plugins.Impl
         public void SetConfiguration(ConfigurationBase configuration)
         {
             this.configuration = (SoundPluginConfiguration) configuration;
-            this.device = new WasapiOut(AudioClientShareMode.Shared, 100);
+            
         }
 
         public IConfigirationControl GetConfigControl()
@@ -47,6 +46,9 @@ namespace AchtungPolizei.Plugins.Impl
         public Task Start(BuildState state, BuildStatus status)
         {
             var tcs = new TaskCompletionSource<byte>();
+
+            TrackableWaveChannel stream = null;
+            WasapiOut device = null;
 
             try
             {
@@ -69,8 +71,8 @@ namespace AchtungPolizei.Plugins.Impl
 
                 if (File.Exists(fileName))
                 {
-                    var device = new WasapiOut(AudioClientShareMode.Shared, false, 100);
-                    var stream = new TrackableWaveChannel(BuildStream(fileName));
+                    device = new WasapiOut(AudioClientShareMode.Shared, 100);
+                    stream = new TrackableWaveChannel(BuildStream(fileName));
 
                     device.Init(stream);
                     device.Play();
@@ -81,6 +83,7 @@ namespace AchtungPolizei.Plugins.Impl
                     
                         stream.Dispose();
                         device.Dispose();
+
                         stream = null;
                         device = null;
                     };
@@ -95,6 +98,18 @@ namespace AchtungPolizei.Plugins.Impl
             catch (Exception e)
             {
                 tcs.SetException(e);
+
+                if (stream != null)
+                {
+                    stream.Dispose();
+                    stream = null;
+                }
+
+                if (device != null)
+                {
+                    device.Dispose();
+                    device = null;
+                }
             }
 
             return tcs.Task;

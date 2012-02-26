@@ -19,6 +19,7 @@ namespace AchtungPolizei.Plugins.Impl
 
         public void Dispose()
         {
+            StopPlay();
         }
 
         public Guid Id
@@ -69,7 +70,10 @@ namespace AchtungPolizei.Plugins.Impl
 
         private void StartPlay()
         {
-            Process.Start(ExecutablePath, BuildArguments("ON"));
+            if (ExecutablePath != null)
+            {
+                Process.Start(ExecutablePath, BuildArguments("ON"));
+            }
         }
 
         private string BuildArguments(string switchState)
@@ -79,14 +83,17 @@ namespace AchtungPolizei.Plugins.Impl
             return arguments;
         }
 
+        private void StopPlay()
+        {
+            if (ExecutablePath != null)
+            {
+                Process.Start(ExecutablePath, BuildArguments("Off"));
+            }
+        }
+
         public void Close()
         {
             Dispose();
-        }
-
-        private void StopPlay()
-        {
-            Process.Start(ExecutablePath, BuildArguments("Off"));
         }
     }
 }

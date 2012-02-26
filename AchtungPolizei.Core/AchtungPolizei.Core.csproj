@@ -48,7 +48,11 @@
     <Compile Include="BuildStatusChangedEventArgs.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Helpers\PluginLocator.cs" />
-    <Compile Include="OutputQue.cs" />
+    <Compile Include="Output\ExecutionPlan.cs" />
+    <Compile Include="Output\ExecutionStage.cs" />
+    <Compile Include="Output\OutputQue.cs" />
+    <Compile Include="Output\ProcessRequest.cs" />
+    <Compile Include="Output\ProjectState.cs" />
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectAgent.cs" />
