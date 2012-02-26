@@ -110,6 +110,8 @@ namespace AchtungPolizei.Plugins.Impl
 
         private void Poll(object state)
         {
+            timer.Change(Timeout.Infinite, Timeout.Infinite);
+
             if (StatusReceived == null)
             {
                 return;
@@ -182,6 +184,9 @@ namespace AchtungPolizei.Plugins.Impl
                             Project = configuration.Project,
                             Time = GetTime()
                         }));
+
+            timer.Change(0, configuration.PollInterval);
+
         }
 
         private DateTime GetTime()
