@@ -11,7 +11,19 @@ namespace AchtungPolizei.Core
 
     public class Engine
     {
-        private IEnumerable<Project> projects;
+        private static Engine engine;
+
+        private Engine()
+        {
+            
+        }
+
+        public static Engine Current
+        {
+            get { return engine ?? (engine = new Engine()); }
+        }
+
+        private List<Project> projects;
 
         private readonly List<ProjectAgent> projectAgents = new List<ProjectAgent>();
 
@@ -29,10 +41,16 @@ namespace AchtungPolizei.Core
         public void Start()
         {
             PluginLocator.Initialize(GetPluginDirectory());
-            this.projects = projectsRepository.GetProjects();
+            this.projects = projectsRepository.GetProjects().ToList();
             this.consumer.Start();
 
             ActivateProjectsAgents(projects);
+        }
+
+        public void AddProject(Project project)
+        {
+            projects.Add(project);
+            ActivateProjectAgent(project);
         }
 
         private void ActivateProjectsAgents(IEnumerable<Project> projects)
@@ -55,7 +73,7 @@ namespace AchtungPolizei.Core
                 };
 
             plugin.StatusReceived += ProjectStatusReceived;
-            plugin.SetConfiguration(project.InputPlugin.Configuration);
+            // plugin.SetConfiguration(project.InputPlugin.Configuration);
 
             projectAgents.Add(agent);
         }

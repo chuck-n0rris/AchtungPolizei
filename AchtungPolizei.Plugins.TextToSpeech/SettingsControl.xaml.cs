@@ -11,11 +11,21 @@ namespace AchtungPolizei.Plugins.TextToSpeech
     {
         private readonly SettingsViewModel viewModel;
 
-        public SettingsControl()
+        private readonly TextToSpeechConfiguration configuration;
+
+        public SettingsControl(TextToSpeechConfiguration configuration)
         {
             InitializeComponent();
 
-            viewModel = new SettingsViewModel();
+            this.configuration = configuration;
+
+            viewModel = new SettingsViewModel
+                            {
+                                BuildBrokenPhrase = configuration.BuildBrokenPhrase,
+                                BuildStillBrokenPhrase = configuration.BuildStillBrokenPhrase,
+                                BuildFixedPhrase = configuration.BuildFixedPhrase
+                            };
+
             DataContext = viewModel;
         }
 
@@ -28,12 +38,11 @@ namespace AchtungPolizei.Plugins.TextToSpeech
 
         public ConfigurationBase GetConfiguration()
         {
-            return new TextToSpeechConfiguration
-                {
-                    BuildBrokenPhrase = viewModel.BuildBrokenPhrase,
-                    BuildFixedPhrase = viewModel.BuildFixedPhrase,
-                    BuildStillBrokenPhrase = viewModel.BuildStillBrokenPhrase
-                };
+            configuration.BuildBrokenPhrase = viewModel.BuildBrokenPhrase;
+            configuration.BuildFixedPhrase = viewModel.BuildFixedPhrase;
+            configuration.BuildStillBrokenPhrase = viewModel.BuildStillBrokenPhrase;
+
+            return configuration;
         }
 
         public Type GetConfigurationType()

@@ -29,14 +29,8 @@ namespace AchtungPolizei.Tray
             var mainWindow = new MainWindow();
             mainWindow.Hide();
 
-            var engine = new Engine();
+            var engine = Engine.Current;
             engine.Start();
-
-            var assemblyFile = new FileInfo(Assembly.GetExecutingAssembly().FullName);
-            string assemblyDirectory = assemblyFile.Directory.FullName;
-            string pluginsDirectory = Path.Combine(assemblyDirectory, "Plugins");
-
-            PluginLocator.Initialize(pluginsDirectory);
         }
     }
 }
