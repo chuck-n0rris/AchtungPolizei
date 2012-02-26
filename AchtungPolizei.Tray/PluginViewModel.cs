@@ -1,22 +1,28 @@
 namespace AchtungPolizei.Tray
 {
     using System;
-
     using AchtungPolizei.Plugins;
 
     public class PluginViewModel : ViewModelBase
     {
         private Guid id;
         private string name;
-        private IConfigirationControl configiration;
+        private IConfigirationControl configuration;
 
-        public PluginViewModel(IPlugin plugin)
+        public Guid Id
         {
-            this.Id = plugin.Id;
-            this.Configiration = plugin.GetConfigControl();
-            this.Name = plugin.Name;
-        }
+            get
+            {
+                return this.id;
+            }
 
+            set
+            {
+                this.id = value;
+                this.RaisePropertyChanged("Id");
+            }
+        }
+        
         public string Name
         {
             get
@@ -31,31 +37,17 @@ namespace AchtungPolizei.Tray
             }
         }
         
-        public IConfigirationControl Configiration
+        public IConfigirationControl Configuration
         {
             get
             {
-                return this.configiration;
+                return this.configuration;
             }
 
             set
             {
-                this.configiration = value;
-                this.RaisePropertyChanged("Configiration");
-            }
-        }
-
-        public Guid Id
-        {
-            get
-            {
-                return this.id;
-            }
-
-            set
-            {
-                this.id = value;
-                this.RaisePropertyChanged("Id");
+                this.configuration = value;
+                this.RaisePropertyChanged("Configuration");
             }
         }
     }

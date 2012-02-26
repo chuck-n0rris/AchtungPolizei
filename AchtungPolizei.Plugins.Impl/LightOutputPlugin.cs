@@ -41,7 +41,7 @@ namespace AchtungPolizei.Plugins.Impl
 
         public void Dispose()
         {
-            StopPlay();
+           // StopPlay();
         }
 
         private void StopPlay()

@@ -67,6 +67,7 @@
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PluginPreviewItem.cs" />
     <Compile Include="PluginViewModel.cs" />
     <Compile Include="ProjectViewModel.cs" />
     <Compile Include="Settings.xaml.cs">
