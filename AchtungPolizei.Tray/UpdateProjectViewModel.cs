@@ -154,14 +154,16 @@ namespace AchtungPolizei.Tray
             }
 
             var foundPlugin = InputPlugins.Single(it => it.Id == this.internalProject.InputPlugin.PluginId);
+            
+            foundPlugin.Source.SetConfiguration(internalProject.InputPlugin.Configuration);
             var pluginModel = new PluginViewModel
                 {
                     Id = foundPlugin.Id,
-                    Name = foundPlugin.Name
-                    // Configuration = internalProject.InputPlugin.Configuration
+                    Name = foundPlugin.Name,
+                    Configuration = foundPlugin.Source.GetConfigControl()
                 };
 
-            // SelectedInputPlugin = 
+            SelectedInputPlugin = pluginModel;
         }
     }
 }
