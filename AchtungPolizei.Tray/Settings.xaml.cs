@@ -4,6 +4,7 @@ using AchtungPolizei.Core;
 namespace AchtungPolizei.Tray
 {
     using System.Windows;
+    using System.Windows.Controls;
 
     /// <summary>
     /// Interaction logic for Settings.xaml
@@ -46,7 +47,16 @@ namespace AchtungPolizei.Tray
 
         private void EditProjectClick(object sender, RoutedEventArgs e)
         {
+            var buttonModel = (ProjectViewModel) ((FrameworkElement)e.OriginalSource).DataContext;
 
+            var updateProject = new UpdateProject(buttonModel.Source);
+            var dialogResult = updateProject.ShowDialog();
+            
+            if (dialogResult.HasValue && dialogResult.Value)
+            {
+                projects.Add(updateProject.CreatedProject);
+                model.Projects.Add(new ProjectViewModel(updateProject.CreatedProject));
+            }
         }
     }
 }
