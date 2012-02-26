@@ -90,7 +90,10 @@
             {
                 try
                 {
-                    Assembly pluginAssembly = Assembly.LoadFile(file.FullName);
+                    Assembly pluginAssembly = Assembly.Load(new AssemblyName
+                                                                {
+                                                                    CodeBase = file.FullName
+                                                                });
                     pluginTypes.AddRange(FindPluginTypesInAssembly(pluginAssembly));
                 }
                 catch (FileLoadException)
