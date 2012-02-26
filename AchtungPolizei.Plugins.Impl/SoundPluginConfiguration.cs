@@ -4,19 +4,19 @@ namespace AchtungPolizei.Plugins.Impl
     {
         public string Broken
         {
-            get { return parameters["broken"]; }
+            get { return GetParameter("broken",""); }
             set { parameters["broken"] = value; }
         }
 
         public string StillBroken
         {
-            get { return parameters["stillBroken"]; }
+            get { return GetParameter("stillBroken",""); }
             set { parameters["stillBroken"] = value; }
         }
 
         public string Fixed
         {
-            get { return parameters["fixed"]; }
+            get { return GetParameter("fixed",""); }
             set { parameters["fixed"] = value; }
         }
     }

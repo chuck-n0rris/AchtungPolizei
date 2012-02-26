@@ -10,6 +10,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,12 +21,21 @@
         <TextBlock  HorizontalAlignment="Right" Margin="4"  Text="Power manager" VerticalAlignment="Center"  TextAlignment="Right" />
         <TextBlock  HorizontalAlignment="Right" Margin="4"  Text="Device" VerticalAlignment="Center"         Grid.Row="1" TextAlignment="Right" />
         <TextBlock  HorizontalAlignment="Right" Margin="4"  Text="Socket" VerticalAlignment="Center"         Grid.Row="2" TextAlignment="Right" />
+        <TextBlock  HorizontalAlignment="Right" Margin="4"  Text="Miliseconds" VerticalAlignment="Center"         Grid.Row="3" TextAlignment="Right" />
+        
+        
         <TextBox Grid.Column="1" Height="26" HorizontalAlignment="Stretch" Margin="4"  VerticalAlignment="Center" HorizontalContentAlignment="Left" Width="Auto" 
                  Text="{Binding Path, ValidatesOnDataErrors=True}"/>
+        
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
-                 Text="{Binding Device, ValidatesOnDataErrors=True}"/>                               
+                 Text="{Binding Device, ValidatesOnDataErrors=True}"/>  
+        
         <TextBox Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
-                 Text="{Binding Socket, ValidatesOnDataErrors=True}"/>
+                 Text="{Binding Socket, ValidatesOnDataErrors=True}"/>        
+        
+        <Slider Height="26" HorizontalAlignment="Stretch" Margin="4" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Left" Width="Auto" Grid.ColumnSpan="2" 
+                 Value="{Binding Miliseconds, ValidatesOnDataErrors=True}"/>
+        
         <Button Content="..." Grid.Column="2" Height="26" Margin="4"  VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" 
                 Command="{Binding SelectFile}"/>
     </Grid>

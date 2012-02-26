@@ -97,5 +97,11 @@ namespace AchtungPolizei.Plugins.Impl
             }
         }
 
+        public void Initialize(SoundPluginConfiguration configuration)
+        {
+            this.BrokenFile = configuration.Broken;
+            this.FixedFile = configuration.Fixed;
+            this.StillBrokenFile = configuration.StillBroken;
+        }
     }
 }
