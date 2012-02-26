@@ -3,12 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AchtungPolizei.Core.Helpers;
 using AchtungPolizei.Plugins;
 using System.Linq;
 
 namespace AchtungPolizei.Core
 {
-
     public class ExecutionStage
     {
         public BuildState BuildState { get; set; }
@@ -88,11 +88,35 @@ namespace AchtungPolizei.Core
 
                 if (que.TryTake(out request, TimeSpan.FromMinutes(1)))
                 {
-                    var executionPlan = new ExecutionPlan() {ExecutionStages = new List<ExecutionStage>()};
+                    var executionPlan = BuildExecutionPlan(request);
 
                     executionPlan.Run().Wait();
                 }
             }
+        }
+
+        private static ExecutionPlan BuildExecutionPlan(ProcessRequest request)
+        {
+            var executionPlan = new ExecutionPlan
+            {
+                ExecutionStages = new List<ExecutionStage>()
+            };
+
+            foreach (var pluginConfiguration in request.Project.OutputPlugins)
+            {
+                var plugin = PluginLocator.Current.GetInstanceById(pluginConfiguration.PluginId);
+
+                if (plugin is IOutputPlugin)
+                {
+                    plugin.SetConfiguration(pluginConfiguration.Configuration);
+
+                    executionPlan.ExecutionStages.Add(new ExecutionStage(request.ProjectState.BuildState,
+                                                                         request.ProjectState.BuildStatus, 
+                                                                         (IOutputPlugin) plugin));
+                }
+            }
+            
+            return executionPlan;
         }
     }
 }

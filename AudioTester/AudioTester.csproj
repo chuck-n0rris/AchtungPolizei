@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.Core\AchtungPolizei.Core.csproj">
+      <Project>{DBE39910-FD55-4E95-ACE5-E7012B178FCC}</Project>
+      <Name>AchtungPolizei.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AchtungPolizei.Plugins.Impl\AchtungPolizei.Plugins.Impl.csproj">
       <Project>{7B966C23-B375-4E61-9961-B0CE907C3FEE}</Project>
       <Name>AchtungPolizei.Plugins.Impl</Name>
@@ -62,6 +66,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

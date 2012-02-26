@@ -39,6 +39,7 @@
         {
             return pluginTypes
                 .Where(inputPluginInterface.IsAssignableFrom)
+                .Where(it => it.IsClass && !it.IsAbstract)
                 .Select(CreatePluginInstance)
                 .Cast<IInputPlugin>()
                 .ToList();
@@ -48,6 +49,7 @@
         {
             return pluginTypes
                 .Where(outputPluginInterface.IsAssignableFrom)
+                .Where(it => it.IsClass && !it.IsAbstract)
                 .Select(CreatePluginInstance)
                 .Cast<IOutputPlugin>()
                 .ToList();
@@ -94,6 +96,7 @@
                                                                 {
                                                                     CodeBase = file.FullName
                                                                 });
+
                     pluginTypes.AddRange(FindPluginTypesInAssembly(pluginAssembly));
                 }
                 catch (FileLoadException)

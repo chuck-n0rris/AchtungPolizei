@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using AchtungPolizei.Core;
+using AchtungPolizei.Core.Helpers;
 using AchtungPolizei.Plugins;
 using AchtungPolizei.Plugins.Impl;
 
@@ -18,14 +22,7 @@ namespace AudioTester
 
             // TestSound();
 
-            Task.Factory.StartNew(Consumer);
-
-            while (Console.ReadLine() != "X")
-            {
-                que.TryAdd(new Random().Next(1000));
-            }
-
-            shutdown = true;
+            ShouldBeAbleToOutput();
 
         }
 
@@ -51,20 +48,42 @@ namespace AudioTester
 
 
 
-        //private static void TestLights()
-        //{
-        //    var lightOutputPlugin = new LightOutputPlugin();
-        //    Task start = lightOutputPlugin.Start(new BuildState(), BuildStatus.Fixed);
-        //    start.ContinueWith(it => Console.WriteLine("Done"));
-        //    Console.ReadLine();
-        //}
+        public static void ShouldBeAbleToOutput()
+        {
+            var outputQue = new OutputQue();
 
-        //private static void TestSound()
-        //{
-        //    var soundOutputPlugin = new SoundOutputPlugin("aircraft012.mp3");
-        //    Task task = soundOutputPlugin.Start(new BuildState(), BuildStatus.Fixed);
-        //    task.ContinueWith(it => Console.WriteLine("Hello"));
-        //    Console.ReadLine();
-        //}
+            var project = new Project()
+            {
+                Name = "Hello",
+                OutputPlugins = new List<PluginConfiguration>
+                                                      {
+                                                          new PluginConfiguration()
+                                                              {
+                                                                  PluginId = Guid.Parse("282356A9-3E91-4405-B54B-072709E1DA09"),
+                                                                  Configuration = new SoundPluginConfiguration
+                                                                                      {
+                                                                                         Broken = @"D:\Develop\hackaton\AchtungPolizei\AudioTester\bin\Debug\aircraft012.mp3"
+                                                                                      }
+                                                              }
+                                                      }
+            };
+
+            PluginLocator.Initialize(@"D:\Develop\hackaton\AchtungPolizei\AudioTester\bin\Debug");
+
+            outputQue.Start();
+
+            outputQue.Add(new ProcessRequest
+            {
+                Project = project,
+                ProjectState = new ProjectState
+                {
+                    BuildState = new BuildState(),
+                    BuildStatus = BuildStatus.Broken
+
+                }
+            });
+
+            Thread.Sleep(100000);
+        }
     }
 }
