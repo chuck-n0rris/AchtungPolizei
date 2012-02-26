@@ -15,6 +15,8 @@ namespace AchtungPolizei.Core
 
         private readonly List<ProjectAgent> projectAgents = new List<ProjectAgent>();
 
+        private readonly OutputQue consumer = new OutputQue();
+
         private string GetPluginDirectory()
         {
             var assemblyFile = new FileInfo(Assembly.GetExecutingAssembly().FullName);
@@ -25,6 +27,7 @@ namespace AchtungPolizei.Core
         public void Start(List<Project> projects)
         {
             this.projects = projects;
+            this.consumer.Start();
 
             PluginLocator.Initialize(GetPluginDirectory());
             ActivateProjectsAgents(projects);
@@ -85,7 +88,17 @@ namespace AchtungPolizei.Core
 
         private void QueueOutputEvent(Project project, BuildState buildState, BuildStatus buildStatus)
         {
-            throw new NotImplementedException("Implement adding output event to the queue.");
+            // throw new NotImplementedException("Implement adding output event to the queue.");
+
+            this.consumer.Add(new ProcessRequest
+                                  {
+                                      Project = project,
+                                      ProjectState = new ProjectState
+                                        {
+                                            BuildState = buildState,
+                                            BuildStatus = buildStatus
+                                        }
+                                  });
         }
 
         public IEnumerable<Project> Projects
