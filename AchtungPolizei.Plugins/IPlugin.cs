@@ -30,5 +30,13 @@
         /// UI control instance.
         /// </returns>
         IConfigirationControl GetConfigControl();
+
+        /// <summary>
+        /// Returns UI control for editing of configuration.
+        /// </summary>
+        /// <returns>
+        /// UI control instance.
+        /// </returns>
+        IConfigirationControl GetConfigControl(ConfigurationBase config);
     }
 }

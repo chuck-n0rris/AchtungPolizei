@@ -85,6 +85,22 @@ namespace AchtungPolizei.Plugins.Impl
             return control;
         }
 
+        public IConfigirationControl GetConfigControl(ConfigurationBase config)
+        {
+            var control = new HudsonPollerConfigurationControl();
+            var hudsonConfig = (HudsonPollerConfiguration)config;
+
+            control.DataContext = new HudsonPollerConfigurationControl.ViewModel
+            {
+                Address = hudsonConfig.Address,
+                Username = hudsonConfig.Username,
+                Password = hudsonConfig.Password,
+                PollInterval = hudsonConfig.PollInterval,
+                Project = hudsonConfig.Project
+            };
+            return control;
+        }
+
         /// <summary>
         /// Sets plugin configuration.
         /// </summary>

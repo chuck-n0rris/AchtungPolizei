@@ -21,15 +21,11 @@ namespace AchtungPolizei.Tray
 
         private ObservableCollection<PluginViewModel> selectedOutputPlugins;
         
-        public UpdateProjectViewModel(Project project)
+        public UpdateProjectViewModel()
         {
-            this.internalProject = project;
-
             this.InputPlugins = new ObservableCollection<PluginPreviewItem>();
             this.OutputPlugins = new ObservableCollection<PluginPreviewItem>();
             this.SelectedOutputPlugins = new ObservableCollection<PluginViewModel>();
-
-            this.Name = project.Name;
             
             this.InitializeCollections();
         }
@@ -152,18 +148,6 @@ namespace AchtungPolizei.Tray
             {
                 this.OutputPlugins.Add(new PluginPreviewItem(outputPlugin));
             }
-
-            var foundPlugin = InputPlugins.Single(it => it.Id == this.internalProject.InputPlugin.PluginId);
-            
-            foundPlugin.Source.SetConfiguration(internalProject.InputPlugin.Configuration);
-            var pluginModel = new PluginViewModel
-                {
-                    Id = foundPlugin.Id,
-                    Name = foundPlugin.Name,
-                    Configuration = foundPlugin.Source.GetConfigControl()
-                };
-
-            SelectedInputPlugin = pluginModel;
         }
     }
 }
