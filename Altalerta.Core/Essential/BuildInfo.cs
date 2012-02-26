@@ -40,5 +40,25 @@ namespace Altalerta.Core.Essential
                 IsSuccessful,
                 string.Join(", ", Authors));
         }
+
+        public BuildState GetState(bool wasPreviouslyBroken)
+        {
+            if (!IsSuccessful && wasPreviouslyBroken)
+            {
+                return BuildState.StillBroken;
+            }
+
+            if (!IsSuccessful && !wasPreviouslyBroken)
+            {
+                return BuildState.Broken;
+            }
+
+            if (IsSuccessful && wasPreviouslyBroken)
+            {
+                return BuildState.Fixed;
+            }
+
+            return BuildState.Ok;
+        }
     }
 }

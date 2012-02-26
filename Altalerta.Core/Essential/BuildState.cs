@@ -4,6 +4,7 @@ namespace Altalerta.Core.Essential
     {
         Broken,
         StillBroken,
-        Fixed
+        Fixed,
+        Ok
     }
 }

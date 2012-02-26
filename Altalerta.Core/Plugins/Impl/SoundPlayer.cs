@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Altalerta.Core.Plugins.Impl
         public string BrokenSound
         {
             get { return Configuration["BrokenSound"]; }
+        }
+
+        public string StillBrokenSound
+        {
+            get { return Configuration["StillBrokenSound"]; }
         }
 
         public string FixedSound
@@ -48,10 +54,30 @@ namespace Altalerta.Core.Plugins.Impl
             return Task.Factory.StartNew(
                 () =>
                     {
-                        player.Play(state == BuildState.Broken ? BrokenSound : FixedSound);
+                        if (state == BuildState.Ok)
+                        {
+                            return;
+                        }
+
+                        player.Play(GetSoundName(state));
                         Thread.Sleep(Interval);
                         player.Stop();
                     });
+        }
+
+        private string GetSoundName(BuildState state)
+        {
+            switch (state)
+            {
+                case BuildState.Broken:
+                    return BrokenSound;
+                case BuildState.StillBroken:
+                    return StillBrokenSound;
+                case BuildState.Fixed:
+                    return FixedSound;
+                default:
+                    throw new ApplicationException("Can't find suitable sound.");
+            }
         }
 
         #endregion

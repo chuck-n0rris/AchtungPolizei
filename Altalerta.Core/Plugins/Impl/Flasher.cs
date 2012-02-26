@@ -47,6 +47,11 @@ namespace Altalerta.Core.Plugins.Impl
             return Task.Factory.StartNew(
                 () =>
                     {
+                        if (state == BuildState.Ok)
+                        {
+                            return;
+                        }
+
                         Process.Start(ManagerPath, GetArguments(true));
                         Thread.Sleep(Interval);
                         Process.Start(ManagerPath, GetArguments(false));

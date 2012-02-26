@@ -11,13 +11,28 @@ namespace Altalerta.Core.Essential
     {
         private IInputPlugin input;
 
-        private IEnumerable<IOutputPlugin> output; 
+        private IEnumerable<IOutputPlugin> output;
+
+        private bool wasBroken;
 
         public string Name { get; set; }
 
         public PluginReference Input { get; set; }
 
         public IEnumerable<PluginReference> Output { get; set; }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            input.Dispose();
+            foreach (IOutputPlugin plugin in output)
+            {
+                plugin.Dispose();
+            }
+        }
+
+        #endregion
 
         public void Initialize(IPluginRepository plugins)
         {
@@ -37,17 +52,10 @@ namespace Altalerta.Core.Essential
                 Task.WaitAll(
                     output
                         .Select(x => x.Notify(
-                            args.Info.IsSuccessful ? BuildState.Fixed : BuildState.Broken,
-                            args.Info)).ToArray());
-            }
-        }
-
-        public void Dispose()
-        {
-            input.Dispose();
-            foreach (var plugin in output)
-            {
-                plugin.Dispose();
+                            args.Info.GetState(wasBroken),
+                            args.Info))
+                        .ToArray());
+                wasBroken = !args.Info.IsSuccessful;
             }
         }
     }
