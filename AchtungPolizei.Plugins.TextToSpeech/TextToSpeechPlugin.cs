@@ -59,11 +59,20 @@
         public void SetConfiguration(ConfigurationBase configuration)
         {
             this.configuration = configuration as TextToSpeechConfiguration;
+
+            this.configuration.BuildBrokenPhrase = this.configuration.BuildBrokenPhrase
+                ?? defaultPhrases[BuildStatus.Broken];
+
+            this.configuration.BuildStillBrokenPhrase = this.configuration.BuildStillBrokenPhrase
+                ?? defaultPhrases[BuildStatus.StillBroken];
+
+            this.configuration.BuildFixedPhrase = this.configuration.BuildFixedPhrase
+                ?? defaultPhrases[BuildStatus.Fixed];
         }
         
         public IConfigirationControl GetConfigControl()
         {
-            return new SettingsControl(); // control ?? (control = new SettingsControl());
+            return new SettingsControl();
         }
 
         public Task Start(BuildState state, BuildStatus status)

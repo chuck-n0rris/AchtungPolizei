@@ -1,4 +1,6 @@
-﻿namespace AchtungPolizei.Tray
+﻿using AchtungPolizei.Core;
+
+namespace AchtungPolizei.Tray
 {
     using System.Collections.Generic;
     using System.IO;
@@ -26,6 +28,9 @@
         {
             var mainWindow = new MainWindow();
             mainWindow.Hide();
+
+            var engine = new Engine();
+            engine.Start();
 
             var assemblyFile = new FileInfo(Assembly.GetExecutingAssembly().FullName);
             string assemblyDirectory = assemblyFile.Directory.FullName;
