@@ -99,6 +99,8 @@ namespace AchtungPolizei.Core
                     buildStatus = BuildStatus.Fixed;
                 }
 
+                agent.IsSuccessfulLastTime = isSuccessfulNow;
+
                 if (buildStatus != null)
                 {
                     QueueOutputEvent(agent.Project, e.State, buildStatus.Value);
