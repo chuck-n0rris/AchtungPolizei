@@ -1,4 +1,4 @@
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools
 {
     public interface IAudioPlayer
     {

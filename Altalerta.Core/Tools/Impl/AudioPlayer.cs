@@ -2,7 +2,7 @@ using System;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools.Impl
 {
     public class AudioPlayer : IAudioPlayer, IDisposable
     {

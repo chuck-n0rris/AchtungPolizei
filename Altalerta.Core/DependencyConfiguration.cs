@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Altalerta.Core.Essential;
+using Altalerta.Core.Plugins;
+using Altalerta.Core.Plugins.Impl;
+using Altalerta.Core.Tools.Impl;
 using Autofac;
 
 namespace Altalerta.Core

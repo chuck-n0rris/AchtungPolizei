@@ -1,0 +1,34 @@
+[
+  {
+    "Name": "FIFA",
+    "Input": {
+		"Name": "Hudson Poller",
+		"Configuration": {
+			"Address": "http://demo.binary-studio.org:4444/",
+			"Username": "readonly",
+			"Password": "readonly",
+			"Project": "FIFA",
+			"Interval": 20000
+		}
+	},
+	"Output": [
+		{
+			"Name": "Sound Player",
+			"Configuration": {
+				"BrokenSound": "D:\\sound.mp3",
+				"FixedSound": "D:\\sound.mp3",
+				"Interval": 10000
+			}
+		},
+		{
+			"Name": "Flasher",
+			"Configuration": {
+				"ManagerPath": "C:\\Program Files (x86)\\Gembird\\Power Manager\\pm.exe",
+				"Socket": "SOCKET1",
+				"Device": "DEVICE2",
+				"Interval": 10000
+			}
+		}
+	] 
+  }
+]

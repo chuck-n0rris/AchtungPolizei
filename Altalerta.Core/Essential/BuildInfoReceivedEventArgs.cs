@@ -1,6 +1,6 @@
 using System;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Essential
 {
     public class BuildInfoReceivedEventArgs : EventArgs
     {

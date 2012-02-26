@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Altalerta.Core.Essential;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools
 {
     public interface IProjectRepository
     {

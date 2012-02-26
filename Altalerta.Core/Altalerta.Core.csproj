@@ -45,33 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AudioPlayer.cs" />
-    <Compile Include="BuildInfo.cs" />
-    <Compile Include="BuildInfoReceivedEventArgs.cs" />
-    <Compile Include="BuildState.cs" />
-    <Compile Include="CookieAwareWebClient.cs">
+    <Compile Include="DependencyConfiguration.cs" />
+    <Compile Include="Essential\BuildInfo.cs" />
+    <Compile Include="Essential\BuildInfoReceivedEventArgs.cs" />
+    <Compile Include="Essential\BuildState.cs" />
+    <Compile Include="Essential\Engine.cs" />
+    <Compile Include="Essential\PluginReference.cs" />
+    <Compile Include="Essential\Project.cs" />
+    <Compile Include="Plugins\IInputPlugin.cs" />
+    <Compile Include="Plugins\Impl\Flasher.cs" />
+    <Compile Include="Plugins\Impl\HudsonPoller.cs" />
+    <Compile Include="Plugins\Impl\SoundPlayer.cs" />
+    <Compile Include="Plugins\IOutputPlugin.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\IAudioPlayer.cs" />
+    <Compile Include="Tools\Impl\AudioPlayer.cs" />
+    <Compile Include="Tools\Impl\CookieAwareWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DependencyConfiguration.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="Flasher.cs" />
-    <Compile Include="HudsonPoller.cs" />
-    <Compile Include="IAudioPlayer.cs" />
-    <Compile Include="IInputPlugin.cs" />
-    <Compile Include="IOutputPlugin.cs" />
-    <Compile Include="IPlugin.cs" />
-    <Compile Include="IPluginRepository.cs" />
-    <Compile Include="IProjectRepository.cs" />
-    <Compile Include="JsonProjectRepository.cs" />
-    <Compile Include="PluginReference.cs" />
-    <Compile Include="PluginRepository.cs" />
-    <Compile Include="Project.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoundPlayer.cs" />
+    <Compile Include="Tools\Impl\JsonProjectRepository.cs" />
+    <Compile Include="Tools\Impl\PluginRepository.cs" />
+    <Compile Include="Tools\IPluginRepository.cs" />
+    <Compile Include="Tools\IProjectRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

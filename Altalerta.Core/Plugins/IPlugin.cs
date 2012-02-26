@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins
 {
     public interface IPlugin : IDisposable
     {

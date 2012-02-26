@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Altalerta.Core.Essential;
+using Altalerta.Core.Tools;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins.Impl
 {
     public class SoundPlayer : IOutputPlugin
     {

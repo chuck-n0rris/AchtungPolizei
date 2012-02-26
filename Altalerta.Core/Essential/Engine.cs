@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Altalerta.Core.Tools;
 using Autofac;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Essential
 {
     public class Engine : IDisposable
     {

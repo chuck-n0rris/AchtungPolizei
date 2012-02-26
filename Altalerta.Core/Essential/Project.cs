@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Altalerta.Core.Plugins;
+using Altalerta.Core.Tools;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Essential
 {
     public class Project : IDisposable
     {

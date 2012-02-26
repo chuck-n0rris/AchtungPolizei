@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Essential
 {
     public class PluginReference
     {

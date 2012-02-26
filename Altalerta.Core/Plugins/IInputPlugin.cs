@@ -1,6 +1,7 @@
-﻿using System;
+using System;
+using Altalerta.Core.Essential;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins
 {
     public interface IInputPlugin : IPlugin
     {

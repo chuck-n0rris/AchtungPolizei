@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Net;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools.Impl
 {
     /// <summary>
     /// Web client with cookies enabled.

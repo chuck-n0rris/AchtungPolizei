@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
+using Altalerta.Core.Essential;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins
 {
     public interface IOutputPlugin : IPlugin
     {

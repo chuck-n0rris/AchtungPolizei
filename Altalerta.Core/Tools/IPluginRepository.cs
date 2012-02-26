@@ -1,6 +1,8 @@
+using Altalerta.Core.Essential;
+using Altalerta.Core.Plugins;
 using Autofac;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools
 {
     public interface IPluginRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace Altalerta.Core
+namespace Altalerta.Core.Essential
 {
     public enum BuildState
     {

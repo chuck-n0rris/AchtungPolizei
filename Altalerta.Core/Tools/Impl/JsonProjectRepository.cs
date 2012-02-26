@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Altalerta.Core.Essential;
 using Newtonsoft.Json;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Tools.Impl
 {
     public class JsonProjectRepository : IProjectRepository
     {

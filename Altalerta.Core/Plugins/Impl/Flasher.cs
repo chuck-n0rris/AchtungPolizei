@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Altalerta.Core.Essential;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins.Impl
 {
     public class Flasher : IOutputPlugin
     {

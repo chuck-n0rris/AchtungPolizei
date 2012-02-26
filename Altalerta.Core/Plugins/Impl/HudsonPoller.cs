@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Xml;
+using Altalerta.Core.Essential;
+using Altalerta.Core.Tools.Impl;
 
-namespace Altalerta.Core
+namespace Altalerta.Core.Plugins.Impl
 {
     /// <summary>
     /// Polls Hudson CI for status of project build.
