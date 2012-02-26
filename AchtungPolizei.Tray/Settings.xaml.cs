@@ -36,6 +36,7 @@ namespace AchtungPolizei.Tray
             {
                 projects.Add(createDialog.CreatedProject);
                 model.Projects.Add(new ProjectViewModel(createDialog.CreatedProject));
+                Engine.Current.AddProject(createDialog.CreatedProject);
             }
         }
 

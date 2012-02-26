@@ -128,8 +128,8 @@ namespace AchtungPolizei.Plugins.Impl
         private void Authenticate()
         {
             client.Headers["Content-type"] = "application/x-www-form-urlencoded";
-            client.UploadString(
-                configuration.Address + "j_acegi_security_check",
+            client.UploadStringAsync(
+                new Uri(configuration.Address + "j_acegi_security_check"),
                 string.Format(
                     "j_username={0}&j_password={1}",
                     configuration.Username,
