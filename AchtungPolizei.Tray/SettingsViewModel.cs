@@ -1,4 +1,8 @@
-﻿namespace AchtungPolizei.Tray
+﻿using System.Collections.Generic;
+using AchtungPolizei.Core;
+using System.Linq;
+
+namespace AchtungPolizei.Tray
 {
     using System.Collections.ObjectModel;
 
@@ -8,9 +12,9 @@
     {
         private ObservableCollection<ProjectViewModel> projects;
 
-        public SettingsViewModel()
+        public SettingsViewModel(IEnumerable<Project> projects)
         {
-            Projects = new ObservableCollection<ProjectViewModel>();
+            Projects = new ObservableCollection<ProjectViewModel>(projects.Select(x => new ProjectViewModel(x)));
         }
 
         public ObservableCollection<ProjectViewModel> Projects
