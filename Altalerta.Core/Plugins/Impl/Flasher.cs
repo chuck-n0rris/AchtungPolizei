@@ -32,6 +32,7 @@ namespace Altalerta.Core.Plugins.Impl
 
         public void Dispose()
         {
+            Process.Start(ManagerPath, GetArguments(false));
         }
 
         public string Name
