@@ -14,8 +14,26 @@
         </Grid.RowDefinitions>
               
         <TextBlock Text="Achtung Polizei" FontSize="22" Foreground="#FFFF4E00" />
-        
-        <ListBox Grid.Row="1" ItemsSource="{Binding Projects}" DisplayMemberPath="Name" />
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Projects}" Margin="0 10 0 0" >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="{Binding StateColor}" CornerRadius="5" Height="35" Margin="0 0 0 5" Padding="10 0" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />                            
+                            <Button VerticalAlignment="Center" Grid.Column="2" Content="Edit" Click="EditProjectClick" />
+                            
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0 10 0 0" Orientation="Horizontal" >
             <Button Width="85" Height="25" Content="New Project" Click="AddProjectClick" />
