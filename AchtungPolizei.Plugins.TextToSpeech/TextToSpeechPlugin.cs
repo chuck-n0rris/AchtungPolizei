@@ -83,14 +83,14 @@
 
         public Task Start(BuildState state, BuildStatus status)
         {
-            return new Task(Speak, GetPhrase(status));
-        }
+            string phrase = GetPhrase(status);
 
-        private void Speak(object text)
-        {
-            var builder = new PromptBuilder();
-            builder.AppendText((string)text);
-            synthesizer.Speak(builder);
+            return Task.Factory.StartNew(() =>
+            {
+                var builder = new PromptBuilder();
+                builder.AppendText(phrase);
+                synthesizer.Speak(builder);
+            });
         }
 
         private string GetPhrase(BuildStatus status)

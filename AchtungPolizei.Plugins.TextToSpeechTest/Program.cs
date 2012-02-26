@@ -11,7 +11,7 @@ namespace AchtungPolizei.Plugins.TextToSpeechTest
             var buildState = new BuildState();
 
             Task sayBuildFixed = plugin.Start(buildState, BuildStatus.Fixed);
-            sayBuildFixed.RunSynchronously();
+            sayBuildFixed.Wait();
 
             Task sayBuildBroken = plugin.Start(buildState, BuildStatus.Broken);
             sayBuildBroken.RunSynchronously();

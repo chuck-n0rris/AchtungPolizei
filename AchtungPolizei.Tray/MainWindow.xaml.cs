@@ -49,9 +49,11 @@ namespace AchtungPolizei.Tray
         /// <param name="e"> Event arguments. </param>
         private void BuildStatusChanged(object sender, BuildStatusChangedEventArgs e)
         {
-            var viewModel = projectsViewModels.First(vm => vm.Name == e.Project.Name);
-
-            viewModel.StateColor = new SolidColorBrush(buildStatusToColor[e.BuildStatus]);
+            var viewModel = projectsViewModels.FirstOrDefault(vm => vm.Name == e.Project.Name);
+            if (viewModel != null)
+            {
+                viewModel.StateColor = new SolidColorBrush(buildStatusToColor[e.BuildStatus]);
+            }
         }
 
         /// <summary>
