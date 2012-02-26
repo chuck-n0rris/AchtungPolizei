@@ -9,6 +9,7 @@ namespace AchtungPolizei.Tray
     {
         private readonly Project internalProject;
         private SolidColorBrush stateColor;
+        private BuildStatus buildStatus;
 
         private string name;
 
@@ -34,6 +35,19 @@ namespace AchtungPolizei.Tray
             }
         }
 
+        public BuildStatus BuildStatus
+        {
+            get
+            {
+                return this.buildStatus;
+            }
+
+            set
+            {
+                this.buildStatus = value;
+            }
+        }
+
         public SolidColorBrush StateColor
         {
             get
@@ -48,5 +62,25 @@ namespace AchtungPolizei.Tray
         }
 
         public Project Source { get { return internalProject; } }
+
+        public void SetStatus(BuildStatus status)
+        {
+            this.BuildStatus = status;
+
+            switch (status)
+            {
+                case BuildStatus.Broken:
+                    StateColor = new SolidColorBrush(Colors.Red);
+                    break;
+
+                case BuildStatus.StillBroken:
+                    StateColor = new SolidColorBrush(Colors.DarkRed);
+                    break;
+
+                case BuildStatus.Fixed:
+                    StateColor = new SolidColorBrush(Colors.LimeGreen);
+                    break;
+            }
+        }
     }
 }

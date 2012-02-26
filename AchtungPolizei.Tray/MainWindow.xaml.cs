@@ -10,6 +10,11 @@ using AchtungPolizei.Plugins;
 
 namespace AchtungPolizei.Tray
 {
+    using System;
+    using System.Windows.Media.Imaging;
+
+    using Hardcodet.Wpf.TaskbarNotification;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -18,13 +23,6 @@ namespace AchtungPolizei.Tray
         private readonly IList<Project> projects;
         private readonly ProjectsRepository repository = new ProjectsRepository();
         private readonly ObservableCollection<ProjectViewModel> projectsViewModels;
-
-        private Dictionary<BuildStatus, Color> buildStatusToColor = new Dictionary<BuildStatus, Color>
-            {
-                { BuildStatus.Broken, Colors.Red },
-                { BuildStatus.StillBroken, Colors.DarkRed },
-                { BuildStatus.Fixed, Colors.LimeGreen }
-            };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -42,6 +40,8 @@ namespace AchtungPolizei.Tray
             {
                 Engine.Current.AddProject(project);
             }
+
+            ProjectsItemsControl.DataContext = projectsViewModels;
         }
 
         private void SyncContext(WaitCallback callback, object parameter)
@@ -62,7 +62,23 @@ namespace AchtungPolizei.Tray
                     var viewModel = projectsViewModels.FirstOrDefault(vm => vm.Name == args.Project.Name);
                     if (viewModel != null)
                     {
-                        viewModel.StateColor = new SolidColorBrush(buildStatusToColor[args.BuildStatus]);
+                        if (projectsViewModels.All(it => it.BuildStatus == BuildStatus.Fixed) &&
+                            args.BuildStatus == BuildStatus.Broken)
+                        {
+                            Taskbar.ShowBalloonTip(args.Project.Name, "The build has been broken.", BalloonIcon.Error);
+                        }
+
+                        viewModel.SetStatus(args.BuildStatus);
+                    }
+
+                    if (projectsViewModels.Any(it => it.BuildStatus == BuildStatus.Broken))
+                    {
+                        Taskbar.IconSource = new BitmapImage(new Uri("pack://application:,,,/Images/red_light.ico"));
+                    }
+                    
+                    if (projectsViewModels.All(it => it.BuildStatus == BuildStatus.Fixed))
+                    {
+                        Taskbar.IconSource = new BitmapImage(new Uri("pack://application:,,,/Images/red_light.ico"));
                     }
 
                 }, e);
@@ -91,7 +107,6 @@ namespace AchtungPolizei.Tray
         {
             var settings = new Settings(projectsViewModels);
             settings.ShowDialog();
-            repository.SaveProjects(projects);
         }
 
         /// <summary>

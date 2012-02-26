@@ -69,6 +69,12 @@
             return new SettingsControl(configuration);
         }
 
+        public IConfigirationControl GetConfigControl(ConfigurationBase config)
+        {
+            var textToSpeechConfig = (TextToSpeechConfiguration)config;
+            return new SettingsControl(textToSpeechConfig);
+        }
+
         private void InitConfiguration()
         {
             this.configuration.BuildBrokenPhrase = this.configuration.BuildBrokenPhrase

@@ -56,6 +56,20 @@ namespace AchtungPolizei.Plugins.Impl
             return view;
         }
 
+        public IConfigirationControl GetConfigControl(ConfigurationBase config)
+        {
+            var model = new LightSettingsModel();
+
+            model.Initialize((LightPluginConfiguration)config);
+
+            var view = new LightSettingsView
+            {
+                DataContext = model
+            };
+
+            return view;
+        }
+
         public Task Start(BuildState state, BuildStatus status)
         {
             return Task.Factory.StartNew(() =>
