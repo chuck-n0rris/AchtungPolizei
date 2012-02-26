@@ -108,10 +108,13 @@ namespace AchtungPolizei.Plugins.Impl
 
         public void Initialize(LightPluginConfiguration configuration)
         {
-            this.Device = configuration.Device;
-            this.Path = configuration.Path;
-            this.Socket = configuration.Socket;
-            this.Miliseconds = configuration.Miliseconds;
+            if (configuration != null)
+            {
+                this.Device = configuration.Device;
+                this.Path = configuration.Path;
+                this.Socket = configuration.Socket;
+                this.Miliseconds = configuration.Miliseconds;
+            }
         }
     }
 }
