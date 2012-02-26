@@ -3,65 +3,51 @@ namespace AchtungPolizei.Tray
     using System;
     using AchtungPolizei.Plugins;
 
-    public class PluginPreviewItem : ViewModelBase
-    {
-        private readonly IPlugin inputPlugins;
-
-        public PluginPreviewItem(IPlugin plugin)
-        {
-            this.inputPlugins = plugin;
-        }
-
-        public Guid Id
-        {
-            get
-            {
-                return this.inputPlugins.Id;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return this.inputPlugins.Name;
-            }
-        }
-
-        public IPlugin Source { get; set; }
-    }
-
     public class PluginViewModel : ViewModelBase
     {
-        private readonly IPlugin plugin;
+        private Guid id;
+        private string name;
         private IConfigirationControl configuration;
-
-        public PluginViewModel(IPlugin plugin)
-        {
-            this.plugin = plugin;
-        }
 
         public Guid Id
         {
             get
             {
-                return this.plugin.Id;
+                return this.id;
             }
-        }
 
-        public string Name
-        {
-            get
+            set
             {
-                return this.plugin.Name;
+                this.id = value;
+                this.RaisePropertyChanged("Id");
             }
         }
         
-        public IConfigirationControl Configiration
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                this.name = value;
+                this.RaisePropertyChanged("Name");
+            }
+        }
+        
+        public IConfigirationControl Configuration
         {
             get
             {
                 return this.configuration;
+            }
+
+            set
+            {
+                this.configuration = value;
+                this.RaisePropertyChanged("Configuration");
             }
         }
     }

@@ -1,41 +1,31 @@
 namespace AchtungPolizei.Tray
 {
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
     using AchtungPolizei.Core;
-    using AchtungPolizei.Plugins;
+    using AchtungPolizei.Core.Helpers;
 
     public class CreateProjectViewModel : ViewModelBase
     {
         private string name;
+
         private ObservableCollection<PluginPreviewItem> inputPlugins;
         private ObservableCollection<PluginPreviewItem> outputPlugins;
-        private IConfigirationControl inputConfigurationControl;
-        private ObservableCollection<PluginViewModel> outputConfigurationControls;
-        private IConfigirationControl outputConfigurationControl;
-        private PluginViewModel inputPlugin;
-        private PluginViewModel outputPlugin;
 
-        public CreateProjectViewModel(IEnumerable<IInputPlugin> inputPlugins, IEnumerable<IOutputPlugin> outputPlugins)
+        private PluginViewModel selectedInputPlugin;
+        private PluginViewModel selectedOutputPlugin;
+
+        private ObservableCollection<PluginViewModel> selectedOutputPlugins;
+        
+        public CreateProjectViewModel()
         {
             this.InputPlugins = new ObservableCollection<PluginPreviewItem>();
             this.OutputPlugins = new ObservableCollection<PluginPreviewItem>();
-
-            foreach (var inputPlugin in inputPlugins)
-            {
-                this.InputPlugins.Add(new PluginViewModel(inputPlugin));
-            }
-
-            foreach (var outputPlugin in outputPlugins)
-            {
-                this.OutputPlugins.Add(new PluginViewModel(outputPlugin));
-            }
-
-            this.OutputConfigurationControls = new ObservableCollection<PluginViewModel>();
-
+            this.SelectedOutputPlugins = new ObservableCollection<PluginViewModel>();
+            
+            this.InitializeCollections();
         }
-        
+
         public string Name
         {
             get
@@ -50,57 +40,43 @@ namespace AchtungPolizei.Tray
             }
         }
 
-        public PluginViewModel InputPlugin
+        public PluginViewModel SelectedInputPlugin
         {
             get
             {
-                return this.inputPlugin;
+                return this.selectedInputPlugin;
             }
 
             set
             {
-                this.inputPlugin = value;
-                this.RaisePropertyChanged("InputPlugin");
+                this.selectedInputPlugin = value;
+                this.RaisePropertyChanged("SelectedInputPlugin");
             }
         }
 
-        public PluginViewModel OutputPlugin
+        public PluginViewModel SelectedOutputPlugin
         {
             get
             {
-                return this.outputPlugin;
+                return this.selectedOutputPlugin;
             }
 
             set
             {
-                this.outputPlugin = value;
-                this.RaisePropertyChanged("OutputPlugin");
+                this.selectedOutputPlugin = value;
+                this.RaisePropertyChanged("SelectedOutputPlugin");
             }
         }
 
-        public IConfigirationControl InputConfigurationControl
+        public ObservableCollection<PluginViewModel> SelectedOutputPlugins
         {
             get
             {
-                return this.inputConfigurationControl;
-            }
-
-            set
-            {
-                this.inputConfigurationControl = value;
-                this.RaisePropertyChanged("InputConfigurationControl");
-            }
-        }
-
-        public ObservableCollection<PluginViewModel> OutputConfigurationControls
-        {
-            get
-            {
-                return this.outputConfigurationControls;
+                return this.selectedOutputPlugins;
             }
             set
             {
-                this.outputConfigurationControls = value;
+                this.selectedOutputPlugins = value;
                 this.RaisePropertyChanged("OutputConfigurationControls");
             }
         }
@@ -132,42 +108,41 @@ namespace AchtungPolizei.Tray
                 this.RaisePropertyChanged("OutputPlugins");
             }
         }
-
-        public IConfigirationControl OutputConfigurationControl
-        {
-            get
-            {
-                return this.outputConfigurationControl;
-            }
-
-            set
-            {
-                this.outputConfigurationControl = value;
-                this.RaisePropertyChanged("OutputConfigurationControl");
-            }
-        }
-
+        
         public Project GetProject()
         {
-            var project = new Project();
-            project.Name = this.Name;
-            project.InputPlugin = new PluginConfiguration
-                {
-                    PluginId = InputPlugin.Id,
-                    Configuration = InputPlugin.Configiration.GetConfiguration()
-                };
+            //var project = new Project();
+            //project.Name = this.Name;
+            //project.InputPlugin = new PluginConfiguration
+            //    {
+            //        PluginId =  InputPlugin.Id,
+            //        Configuration = InputPlugin.Configuration.GetConfiguration()
+            //    };
 
-            foreach (var pluginModel in OutputConfigurationControls)
+            //foreach (var pluginModel in OutputConfigurationControls)
+            //{
+            //    project.OutputPlugins.Add(
+            //        new PluginConfiguration
+            //        {
+            //            PluginId = pluginModel.Id,
+            //            Configuration = pluginModel.Configuration.GetConfiguration()
+            //        });
+            //}
+
+            return null;
+        }
+
+        private void InitializeCollections()
+        {
+            foreach (var inputPlugin in PluginLocator.Current.GetAllInputPlugins())
             {
-                project.OutputPlugins.Add(
-                    new PluginConfiguration
-                    {
-                        PluginId = pluginModel.Id,
-                        Configuration = pluginModel.Configiration.GetConfiguration()
-                    });
+                this.InputPlugins.Add(new PluginPreviewItem(inputPlugin));
             }
 
-            return project;
+            foreach (var outputPlugin in PluginLocator.Current.GetAllOutputPlugins())
+            {
+                this.OutputPlugins.Add(new PluginPreviewItem(outputPlugin));
+            }
         }
     }
 }

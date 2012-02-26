@@ -35,12 +35,9 @@
                   x:Name="InputPluginsComboBox"
                   Grid.Row="2" DisplayMemberPath="Name" 
                   SelectionChanged="InputPluginSelectionChanged"
-                  SelectedItem="{Binding InputPlugin, Mode=TwoWay}"
-                  SelectedValue="{Binding InputConfigurationControl, Mode=TwoWay}"
-                  SelectedValuePath="Configiration"
                   ItemsSource="{Binding Path=InputPlugins, Mode=OneWay}" />
 
-        <ContentControl Grid.ColumnSpan="2" Grid.Row="4" Content="{Binding InputPlugin.Configiration}" />
+        <ContentControl Grid.ColumnSpan="2" Grid.Row="4" Content="{Binding SelectedInputPlugin.Configuration}" />
 
         <Grid Grid.ColumnSpan="2" Grid.Row="6"  >
             <Grid.RowDefinitions>
@@ -55,7 +52,7 @@
 
             <TextBlock Text="Notification Plugins" />
 
-            <ItemsControl Grid.Row="2" ItemsSource="{Binding OutputConfigurationControls}" >
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding SelectedOutputPlugins}" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" />
@@ -71,13 +68,12 @@
                 <ComboBox 
                     x:Name="OutputPluginsComboBox"
                     DisplayMemberPath="Name"        
-                    SelectedValue="{Binding OutputConfigurationControl, Mode=TwoWay}"
-                    SelectedValuePath="Configiration"
+                    SelectionChanged="OutputPluginSelectionChanged"
                     ItemsSource="{Binding Path=OutputPlugins, Mode=OneWay}" />
                 <Button Grid.Column="1" Content="Add" Click="AddOutputPluginClick" />
             </Grid>
 
-            <ContentControl Grid.Row="6" Content="{Binding OutputPlugin.Configiration}" />
+            <ContentControl Grid.Row="6" Content="{Binding SelectedOutputPlugin.Configuration}" />
             
         </Grid>
 

@@ -63,7 +63,7 @@
         
         public IConfigirationControl GetConfigControl()
         {
-            return control ?? (control = new SettingsControl());
+            return new SettingsControl(); // control ?? (control = new SettingsControl());
         }
 
         public Task Start(BuildState state, BuildStatus status)

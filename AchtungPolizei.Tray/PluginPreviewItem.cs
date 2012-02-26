@@ -28,6 +28,12 @@ namespace AchtungPolizei.Tray
             }
         }
 
-        public IPlugin Source { get; set; }
+        public IPlugin Source 
+        { 
+            get
+            {
+                return this.inputPlugins;
+            }
+        }
     }
 }

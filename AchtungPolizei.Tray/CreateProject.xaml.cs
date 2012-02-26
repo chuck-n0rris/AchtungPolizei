@@ -4,7 +4,6 @@
     using System.Windows.Controls;
 
     using AchtungPolizei.Core;
-    using AchtungPolizei.Core.Helpers;
 
     /// <summary>
     /// Interaction logic for CreateUpdateProject.xaml
@@ -17,7 +16,7 @@
         {
             InitializeComponent();
             
-            model = new CreateProjectViewModel(PluginLocator.Current.GetAllInputPlugins(), PluginLocator.Current.GetAllOutputPlugins());
+            model = new CreateProjectViewModel();
             DataContext = model;
         }
 
@@ -31,11 +30,20 @@
 
         private void AddOutputPluginClick(object sender, RoutedEventArgs e)
         {
-            var plugin = (PluginViewModel)this.OutputPluginsComboBox.SelectedItem;
-            if (plugin.Configiration.Validate())
+            if (model.SelectedOutputPlugin != null)
             {
-                model.OutputConfigurationControls.Add(plugin);
-                model.OutputConfigurationControl = null;
+                if (model.SelectedOutputPlugin.Configuration.Validate())
+                {
+                    model.SelectedOutputPlugins.Add(new PluginViewModel
+                    {
+                        Id = model.SelectedOutputPlugin.Id,
+                        Name = model.SelectedOutputPlugin.Name,
+                        Configuration = model.SelectedOutputPlugin.Configuration
+                    });
+                    
+                    model.SelectedOutputPlugin = null;
+                    OutputPluginsComboBox.SelectedItem = null;
+                }
             }
         }
 
@@ -51,9 +59,35 @@
 
         private void InputPluginSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var pluginModel = (PluginViewModel)InputPluginsComboBox.SelectedItem;
+            if (InputPluginsComboBox.SelectedItem == null)
+                return;
 
-            model.InputConfigurationControl.GetConfiguration();
+            var pluginPreview = (PluginPreviewItem)InputPluginsComboBox.SelectedItem;
+            var pluginModel = new PluginViewModel
+            {
+                Id = pluginPreview.Id,
+                Name = pluginPreview.Name,
+                Configuration = pluginPreview.Source.GetConfigControl()
+            };
+            
+            model.SelectedInputPlugin = pluginModel;
+        }
+
+        private void OutputPluginSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (OutputPluginsComboBox.SelectedItem == null)
+                return;
+            
+            var pluginPreview = (PluginPreviewItem)OutputPluginsComboBox.SelectedItem;
+
+            var pluginModel = new PluginViewModel
+            {
+                Id = pluginPreview.Id,
+                Name = pluginPreview.Name,
+                Configuration = pluginPreview.Source.GetConfigControl()
+            };
+
+            model.SelectedOutputPlugin = pluginModel;
         }
     }
 }
