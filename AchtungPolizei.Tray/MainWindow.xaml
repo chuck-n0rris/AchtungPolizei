@@ -1,8 +1,13 @@
-﻿<Window x:Class="AchtungPolizei.Tray.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+﻿<Window
+    x:Class="AchtungPolizei.Tray.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="AchtungPolizei InputPluginSettings"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    Width="800"
+    Height="600">
     <Grid>
-        
+
     </Grid>
 </Window>

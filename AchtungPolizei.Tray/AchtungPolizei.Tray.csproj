@@ -92,6 +92,20 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AchtungPolizei.CI\AchtungPolizei.CI.csproj">
+      <Project>{4FF05B64-311C-4703-ACE9-0FD6FD4E97C6}</Project>
+      <Name>AchtungPolizei.CI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AchtungPolizei.Core\AchtungPolizei.Core.csproj">
+      <Project>{314FB5E6-42E3-4B08-B0A2-3EE7D2C2D7EB}</Project>
+      <Name>AchtungPolizei.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
+      <Project>{16212B35-E451-475A-B2F7-3204EE5EAF36}</Project>
+      <Name>AchtungPolizei.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

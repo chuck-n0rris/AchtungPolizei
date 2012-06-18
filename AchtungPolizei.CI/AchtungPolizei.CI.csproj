@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{314FB5E6-42E3-4B08-B0A2-3EE7D2C2D7EB}</ProjectGuid>
+    <ProjectGuid>{4FF05B64-311C-4703-ACE9-0FD6FD4E97C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AchtungPolizei.Core</RootNamespace>
-    <AssemblyName>AchtungPolizei.Core</AssemblyName>
+    <RootNamespace>AchtungPolizei.CI</RootNamespace>
+    <AssemblyName>AchtungPolizei.CI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,12 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Engine.cs" />
-    <Compile Include="IPluginsManager.cs" />
-    <Compile Include="OutputPluginInfo.cs" />
+    <Compile Include="FartMessagePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StateBinder.cs" />
+    <Compile Include="TeamCityPlugin.cs" />
+    <Compile Include="TeamCitySettingsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AchtungPolizei.Plugins\AchtungPolizei.Plugins.csproj">
